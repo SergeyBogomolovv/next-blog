@@ -10,23 +10,42 @@ import {
 } from '../ui/dropdown-menu'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import LogoutButton from './logout-button'
-import { Button } from '../ui/button'
+import { IoMdSettings } from 'react-icons/io'
 import { ExitIcon } from '@radix-ui/react-icons'
+import { MdAdminPanelSettings } from 'react-icons/md'
+import { Button } from '../ui/button'
+import Link from 'next/link'
 
 export default function UserButton() {
   const user = useCurrentUser()
-  console.log('dfsf')
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Avatar>
-          <AvatarImage src={user?.image || ''} />
-          <AvatarFallback className='bg-purple-800'>
-            <FaUser className='text-white' />
-          </AvatarFallback>
-        </Avatar>
+        <Button variant={'outline'}>
+          <Avatar className='w-6 h-6 mr-2'>
+            <AvatarImage src={user?.image || ''} />
+            <AvatarFallback className='bg-black dark:bg-white'>
+              <FaUser className='text-white dark:text-black' />
+            </AvatarFallback>
+          </Avatar>
+          Settings
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-40' align='end'>
+        {user?.role === 'ADMIN' && (
+          <Link href={'/admin'}>
+            <DropdownMenuItem>
+              <MdAdminPanelSettings className='w-4 h-4 mr-2' />
+              Admin
+            </DropdownMenuItem>
+          </Link>
+        )}
+        <Link href={'/settings'}>
+          <DropdownMenuItem>
+            <IoMdSettings className='w-4 h-4 mr-2' />
+            Settings
+          </DropdownMenuItem>
+        </Link>
         <LogoutButton>
           <DropdownMenuItem>
             <ExitIcon className='w-4 h-4 mr-2' />

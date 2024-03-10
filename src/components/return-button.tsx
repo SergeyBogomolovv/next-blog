@@ -1,10 +1,7 @@
-'use client'
-
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 const ReturnButton = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter()
-  return <div onClick={() => router.back()}>{children}</div>
+  return <Link href={'/'}>{children}</Link>
 }
 
 export default ReturnButton
