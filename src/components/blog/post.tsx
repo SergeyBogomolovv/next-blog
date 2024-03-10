@@ -6,6 +6,7 @@ import { cn } from '@/lib/utils'
 import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
 import Link from 'next/link'
+
 const font = Orbitron({ subsets: ['latin'], weight: ['600'] })
 import { FaReadme } from 'react-icons/fa6'
 interface Props {

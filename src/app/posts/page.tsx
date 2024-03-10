@@ -1,8 +1,11 @@
 import Post from '@/components/blog/post'
 import SuggestModal from '@/components/blog/suggest-modal'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'
 import { Orbitron } from 'next/font/google'
+import Link from 'next/link'
+import { CiBookmarkPlus } from 'react-icons/ci'
 
 const font = Orbitron({ subsets: ['latin'], weight: ['600'] })
 
@@ -18,9 +21,13 @@ const PostsPage = () => {
         >
           Yoshimura blog
         </h1>
-        <SuggestModal />
+        <Button variant={'outline'} asChild>
+          <Link href={'/new-suggestion'}>
+            <CiBookmarkPlus className='w-5 h-5 sm:mr-2' />
+            <span className='sm:block hidden'>Suggest a post</span>
+          </Link>
+        </Button>
       </div>
-
       <Separator className='my-5' />
       <div className='grid md:grid-cols-2 gap-8'>
         <Post
