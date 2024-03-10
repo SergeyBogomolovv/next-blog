@@ -11,17 +11,17 @@ export default function Navbar() {
   const pathname = usePathname()
   const user = useCurrentUser()
   return (
-    <nav className='bg-background flex justify-between items-center p-4 rounded-xl w-[600px] shadow-sm'>
-      <div className='flex gap-x-2'>
+    <nav className='bg-background flex md:flex-row flex-col gap-2 justify-between items-center p-4 rounded-xl shadow-sm'>
+      <div className='flex gap-2 md:flex-row flex-col w-full'>
         <Button
           asChild
-          variant={pathname === '/server' ? 'default' : 'outline'}
+          variant={pathname === '/my-posts' ? 'default' : 'outline'}
         >
           <Link href={'/my-posts'}>My Posts</Link>
         </Button>
         <Button
           asChild
-          variant={pathname === '/client' ? 'default' : 'outline'}
+          variant={pathname === '/new-post' ? 'default' : 'outline'}
         >
           <Link href={'/new-post'}>New Post</Link>
         </Button>
@@ -41,7 +41,11 @@ export default function Navbar() {
           <Link href={'/settings'}>Settings</Link>
         </Button>
       </div>
-      <Button asChild variant={pathname === '/info' ? 'default' : 'outline'}>
+      <Button
+        asChild
+        variant={pathname === '/info' ? 'default' : 'outline'}
+        className='w-full md:w-auto'
+      >
         <Link href={'/info'}>
           <Avatar className='w-6 h-6 mr-2'>
             <AvatarImage src={user?.image || ''} />
