@@ -1,4 +1,3 @@
-'use client'
 import {
   Sheet,
   SheetContent,
@@ -13,13 +12,13 @@ import ThemeSwitch from '../theme-switch'
 import Link from 'next/link'
 import UserButton from '../auth/user-button'
 import { BsFillPersonFill } from 'react-icons/bs'
-import { useSession } from 'next-auth/react'
-import { FaHome } from 'react-icons/fa'
+import { FaCreativeCommonsSamplingPlus, FaHome } from 'react-icons/fa'
 import { TbWorldQuestion } from 'react-icons/tb'
 import { SiApostrophe } from 'react-icons/si'
+import { auth } from '@/lib/auth'
 
-export default function MobileNav() {
-  const session = useSession()
+export default async function MobileNav() {
+  const session = await auth()
   return (
     <Sheet>
       <SheetTrigger>
@@ -39,6 +38,12 @@ export default function MobileNav() {
               Home
             </Link>
           </Button>
+          <Button variant={'outline'} asChild>
+            <Link href={'/suggestions'}>
+              <FaCreativeCommonsSamplingPlus className='h-6 w-6 mr-2' />
+              Suggestions
+            </Link>
+          </Button>
           <Button variant='outline' className='w-full' asChild>
             <Link href={'/posts'}>
               <SiApostrophe className='h-5 w-5 mr-2' />
@@ -51,7 +56,7 @@ export default function MobileNav() {
               About
             </Link>
           </Button>
-          {session.data?.user ? (
+          {session?.user ? (
             <UserButton />
           ) : (
             <Button variant={'outline'} asChild>

@@ -1,5 +1,4 @@
 'use client'
-
 import { FaUser } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import {
@@ -8,22 +7,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
-import { useCurrentUser } from '@/hooks/use-current-user'
 import LogoutButton from './logout-button'
 import { IoMdSettings } from 'react-icons/io'
 import { ExitIcon } from '@radix-ui/react-icons'
 import { MdAdminPanelSettings } from 'react-icons/md'
 import { Button } from '../ui/button'
 import Link from 'next/link'
+import { useSession } from 'next-auth/react'
 
 export default function UserButton() {
-  const user = useCurrentUser()
+  const session = useSession()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <Button variant={'outline'}>
+        <Button variant={'outline'} className='w-full'>
           <Avatar className='w-6 h-6 mr-2'>
-            <AvatarImage src={user?.image || ''} />
+            <AvatarImage src={session?.data?.user?.image || ''} />
             <AvatarFallback className='bg-black dark:bg-white'>
               <FaUser className='text-white dark:text-black' />
             </AvatarFallback>
@@ -32,7 +31,7 @@ export default function UserButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className='w-40' align='end'>
-        {user?.role === 'ADMIN' && (
+        {session?.data?.user?.role === 'ADMIN' && (
           <Link href={'/admin'}>
             <DropdownMenuItem>
               <MdAdminPanelSettings className='w-4 h-4 mr-2' />
