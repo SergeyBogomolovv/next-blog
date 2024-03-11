@@ -11,7 +11,7 @@ export default function Navbar() {
   const pathname = usePathname()
   const user = useCurrentUser()
   return (
-    <nav className='bg-background flex md:flex-row flex-col gap-2 justify-between items-center p-4 rounded-xl shadow-sm'>
+    <nav className='bg-secondary flex md:flex-row flex-col gap-2 justify-between items-center p-4 rounded-xl shadow-sm'>
       <div className='flex gap-2 md:flex-row flex-col w-full'>
         <Button
           asChild

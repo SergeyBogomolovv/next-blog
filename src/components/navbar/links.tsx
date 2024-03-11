@@ -13,7 +13,10 @@ export default function Links() {
     <div className='flex items-center gap-8 flex-row'>
       <Link
         href={'/'}
-        className={cn('text-2xl text-black dark:text-white', font.className)}
+        className={cn(
+          'text-2xl text-black dark:text-white font-semibold',
+          font.className
+        )}
       >
         Eto Yoshimura
       </Link>

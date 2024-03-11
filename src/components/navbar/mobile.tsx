@@ -39,7 +39,7 @@ export default async function MobileNav() {
             </Link>
           </Button>
           <Button variant={'outline'} asChild>
-            <Link href={'/suggestions'}>
+            <Link href={'/my-suggestions'}>
               <FaCreativeCommonsSamplingPlus className='h-6 w-6 mr-2' />
               Suggestions
             </Link>

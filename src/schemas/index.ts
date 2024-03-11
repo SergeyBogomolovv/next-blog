@@ -24,3 +24,7 @@ export const SettingsSchema = z.object({
   role: z.enum([UserRole.ADMIN, UserRole.USER]),
   email: z.optional(z.string().email()),
 })
+export const NewPostSchema = z.object({
+  title: z.string().min(4),
+  content: z.string().min(10),
+})

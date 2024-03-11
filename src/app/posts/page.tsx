@@ -1,5 +1,4 @@
 import Post from '@/components/blog/post'
-import SuggestModal from '@/components/blog/suggest-modal'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { cn } from '@/lib/utils'

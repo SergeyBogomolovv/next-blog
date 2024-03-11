@@ -18,7 +18,7 @@ export default async function Navbar() {
         <MobileNav />
         <div className='md:flex gap-8 items-center hidden'>
           <Button variant={'outline'} asChild>
-            <Link href={'/suggestions'}>
+            <Link href={'/my-suggestions'}>
               <FaCreativeCommonsSamplingPlus className='h-6 w-6 mr-2' />
               Suggestions
             </Link>

@@ -1,5 +1,7 @@
+import NewSuggestionForm from '@/components/blog/new-suggestion-form'
+
 const NewPostPage = () => {
-  return <div>Enter</div>
+  return <NewSuggestionForm />
 }
 
 export default NewPostPage
