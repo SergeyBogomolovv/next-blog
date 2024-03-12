@@ -12,6 +12,11 @@ enum UserRole {
   USER
 }
 
+enum PostStatus {
+  waiting
+  declined
+  accepted
+}
 model Post {
   id         String       @id @default(cuid())
   title      String
@@ -20,7 +25,8 @@ model Post {
   comments   Comment[]
   author     User         @relation(fields: [authorId], references: [id])
   authorId   String
-  Suggestion Suggestion[]
+  createdAt DateTime @default(now())
+  status PostStatus @default(waiting)
 }
 
 model Comment {
@@ -30,6 +36,7 @@ model Comment {
   post     Post   @relation(fields: [postId], references: [id])
   postId   String
   authorId String
+  createdAt DateTime @default(now())
 }
 
 model User {
@@ -45,17 +52,8 @@ model User {
   twoFactorConformation TwoFactorConformation?
   posts                 Post[]
   comments              Comment[]
-  suggestions           Suggestion[]
 }
 
-model Suggestion {
-  id        String  @id @default(cuid())
-  post      Post    @relation(fields: [postId], references: [id])
-  published Boolean @default(false)
-  User      User   @relation(fields: [userId], references: [id])
-  userId    String
-  postId    String
-}
 
 model Account {
   id                String  @id @default(cuid())

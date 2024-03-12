@@ -19,9 +19,9 @@ import FormSucces from '../form-succes'
 import { IoMdSend } from 'react-icons/io'
 import { Card, CardContent, CardHeader } from '../ui/card'
 import { Textarea } from '../ui/textarea'
-import { addpost } from '@/actions/new-post'
 import Image from 'next/image'
 import { CiImageOn } from 'react-icons/ci'
+import { addpost } from '@/actions/new-post'
 
 const NewSuggestionForm = () => {
   const [image, setImage] = useState<string | undefined>()
@@ -65,7 +65,7 @@ const NewSuggestionForm = () => {
     <Card>
       <CardHeader>
         <div className='w-full flex flex-col gap-y-4 items-center justify-center'>
-          <h1 className='sm:text-3xl text-2xl font-semibold'>
+          <h1 className='text-2xl font-semibold tracking-widest'>
             Post Suggestion
           </h1>
           <p className='text-muted-foreground text-sm'>

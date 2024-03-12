@@ -6,7 +6,7 @@ import { Orbitron } from 'next/font/google'
 import Link from 'next/link'
 import { CiBookmarkPlus } from 'react-icons/ci'
 
-const font = Orbitron({ subsets: ['latin'], weight: ['600'] })
+const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
 
 const PostsPage = () => {
   return (

@@ -15,22 +15,26 @@ export default function Navbar() {
       <div className='flex gap-2 md:flex-row flex-col w-full'>
         <Button
           asChild
-          variant={pathname === '/my-suggestions' ? 'default' : 'outline'}
+          variant={
+            pathname.startsWith('/my-suggestions') ? 'default' : 'outline'
+          }
         >
           <Link href={'/my-suggestions'}>My Suggestions</Link>
         </Button>
         <Button
           asChild
-          variant={pathname === '/new-suggestion' ? 'default' : 'outline'}
+          variant={
+            pathname.startsWith('/new-suggestion') ? 'default' : 'outline'
+          }
         >
           <Link href={'/new-suggestion'}>Suggest a Post</Link>
         </Button>
         {user?.role === 'ADMIN' && (
           <Button
             asChild
-            variant={pathname === '/admin' ? 'default' : 'outline'}
+            variant={pathname.startsWith('/admin') ? 'default' : 'outline'}
           >
-            <Link href={'/admin'}>Admin</Link>
+            <Link href={'/admin'}>Dashboard</Link>
           </Button>
         )}
 

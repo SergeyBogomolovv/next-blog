@@ -1,11 +1,11 @@
 import Suggestion from '@/components/blog/suggestion'
 import { auth } from '@/lib/auth'
-import { getWaitingSuggestionsByUserId } from '@/data/suggestions'
-import EmptySuggestionsCard from '../_components/empty-suggestions-card'
+import { getDeclinedSuggestionsByUserId } from '@/data/suggestions'
+import EmptySuggestionsCard from '../../_components/empty-suggestions-card'
 
-const MyPostsPage = async () => {
+const Declined = async () => {
   const session = await auth()
-  const suggestions = await getWaitingSuggestionsByUserId(session?.user.id)
+  const suggestions = await getDeclinedSuggestionsByUserId(session?.user.id)
   return (
     <div className='w-full flex flex-col gap-10'>
       {suggestions.length ? (
@@ -15,10 +15,10 @@ const MyPostsPage = async () => {
           ))}
         </>
       ) : (
-        <EmptySuggestionsCard variant='default' />
+        <EmptySuggestionsCard variant='declined' />
       )}
     </div>
   )
 }
 
-export default MyPostsPage
+export default Declined

@@ -1,8 +1,8 @@
 import Suggestion from '@/components/blog/suggestion'
-import { getAllWaitingSuggestions } from '@/data/suggestions'
+import { getAllDeclinedSuggestions } from '@/data/suggestions'
 
-const AdminPage = async () => {
-  const suggestions = await getAllWaitingSuggestions()
+export default async function DeclinedPostsAdmin() {
+  const suggestions = await getAllDeclinedSuggestions()
   return (
     <>
       {suggestions.map((post) => (
@@ -16,5 +16,3 @@ const AdminPage = async () => {
     </>
   )
 }
-
-export default AdminPage
