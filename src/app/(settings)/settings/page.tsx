@@ -113,47 +113,47 @@ const Settings = () => {
                   </FormItem>
                 )}
               />
+
               {user?.isOAuth === false && (
-                <>
-                  <FormField
-                    control={form.control}
-                    name='email'
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Email</FormLabel>
-                        <FormControl>
-                          <Input
-                            {...field}
-                            placeholder='newmail@gmail.com'
-                            disabled={isPending}
-                            type='email'
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name='isTwoFactorEnabled'
-                    render={({ field }) => (
-                      <FormItem className='flex flex-row justify-between items-center rounded-lg border p-3 shadow-md'>
-                        <div className='space-y-0.5'>
-                          <FormLabel>2FA</FormLabel>
-                          <FormDescription>Enable 2FA</FormDescription>
-                        </div>
-                        <FormControl>
-                          <Switch
-                            disabled={isPending}
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                </>
+                <FormField
+                  control={form.control}
+                  name='email'
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          {...field}
+                          placeholder='newmail@gmail.com'
+                          disabled={isPending}
+                          type='email'
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
               )}
+
+              <FormField
+                control={form.control}
+                name='isTwoFactorEnabled'
+                render={({ field }) => (
+                  <FormItem className='flex flex-row justify-between items-center rounded-lg border p-3 shadow-md'>
+                    <div className='space-y-0.5'>
+                      <FormLabel>2FA</FormLabel>
+                      <FormDescription>Enable 2FA</FormDescription>
+                    </div>
+                    <FormControl>
+                      <Switch
+                        disabled={isPending}
+                        checked={field.value}
+                        onCheckedChange={field.onChange}
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
             </div>
             <FormError message={error} />
             <FormSucces message={succes} />
