@@ -4,14 +4,10 @@ import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import { Orbitron } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
-import { Button } from '../ui/button'
-import { CiEdit } from 'react-icons/ci'
-import { MdDeleteForever } from 'react-icons/md'
 import { Separator } from '../ui/separator'
-import { BsBan } from 'react-icons/bs'
-import { BsCheck2Circle } from 'react-icons/bs'
 import SuggestionStatusComponent from './suggestion-status'
 import UserCard from '../user-card'
+import SuggestionButtons from './suggestion-buttons'
 import { currentUser } from '@/actions/current-user'
 
 interface Props {
@@ -57,31 +53,19 @@ export default async function Suggestion({
             <SuggestionStatusComponent status={post.status} />
           </>
         )}
-        <div className='grid grid-cols-2 gap-6 w-full'>
+        <>
           {showAdminFeatures && user?.role === UserRole.ADMIN ? (
             <>
-              <Button variant={'succes'}>
-                <BsCheck2Circle className='w-5 h-5 mr-2' />
-                Accept
-              </Button>
-              <Button variant={'destructive'}>
-                <BsBan className='w-5 h-5 mr-2' />
-                Decline
-              </Button>
+              {showAdminFeatures && post.status !== 'waiting' ? (
+                <SuggestionButtons type='admin-checked' post={post} />
+              ) : (
+                <SuggestionButtons type='admin' post={post} />
+              )}
             </>
           ) : (
-            <>
-              <Button variant={'outline'}>
-                <CiEdit className='w-5 h-5 mr-2' />
-                Edit
-              </Button>
-              <Button variant={'destructive'}>
-                <MdDeleteForever className='w-5 h-5 mr-2' />
-                Delete
-              </Button>
-            </>
+            <SuggestionButtons type='user' post={post} />
           )}
-        </div>
+        </>
       </CardFooter>
     </Card>
   )

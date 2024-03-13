@@ -4,8 +4,8 @@ import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { NewPostSchema } from '@/schemas'
 import { saveFile } from '@/service/file-service'
-import { revalidatePath } from 'next/cache'
 import * as z from 'zod'
+import { postRevalidate } from './post-revalidation'
 
 export const addpost = async (
   values: z.infer<typeof NewPostSchema>,
@@ -29,7 +29,6 @@ export const addpost = async (
       image: fileName,
     },
   })
-  revalidatePath('/my-suggestions')
-  revalidatePath('/admin')
+  postRevalidate()
   return { succes: 'Post sent' }
 }

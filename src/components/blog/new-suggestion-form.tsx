@@ -22,6 +22,8 @@ import { Textarea } from '../ui/textarea'
 import Image from 'next/image'
 import { CiImageOn } from 'react-icons/ci'
 import { addpost } from '@/actions/new-post'
+import { useRouter } from 'next/navigation'
+import { toast } from 'sonner'
 
 const NewSuggestionForm = () => {
   const [image, setImage] = useState<string | undefined>()
@@ -30,6 +32,7 @@ const NewSuggestionForm = () => {
   const [succes, setSucces] = useState<string | undefined>()
   const [isPending, startTransition] = useTransition()
   const inputRef: React.Ref<HTMLInputElement> = useRef(null)
+  const router = useRouter()
   const onSubmit = (values: z.infer<typeof NewPostSchema>) => {
     if (!file) {
       setError('Image is required!')
@@ -48,6 +51,8 @@ const NewSuggestionForm = () => {
             setImage(undefined)
             setFile(null)
             setSucces(data.succes)
+            toast.success(data.succes)
+            router.push('/my-suggestions')
           }
         })
         .catch(() => setError('Something went wrong'))

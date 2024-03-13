@@ -18,9 +18,10 @@ export async function saveFile(file: File | any): Promise<string> {
     throw new Error('Ошибка записи файла')
   }
 }
+
 export function deleteFile(fileName: string): void {
   try {
-    const filePath = path.join(process.cwd(), '/public/posts', fileName)
+    const filePath = path.join(process.cwd(), `/public${fileName}`)
     fs.unlink(filePath, () => console.log('file deleted'))
   } catch (error) {
     throw new Error('Ошибка удаления файла')
