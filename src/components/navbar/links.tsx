@@ -1,8 +1,9 @@
-import Link from 'next/link'
-import { Button } from '../ui/button'
 import { cn } from '@/lib/utils'
-import { Poppins } from 'next/font/google'
-const font = Poppins({ subsets: ['latin'], weight: ['600'] })
+import { Orbitron } from 'next/font/google'
+import Link from 'next/link'
+import React from 'react'
+import { Button } from '../ui/button'
+const font = Orbitron({ subsets: ['latin'], weight: ['600'] })
 
 export default function Links() {
   const links = [

@@ -22,9 +22,11 @@ export default async function MobileNav() {
   return (
     <Sheet>
       <SheetTrigger>
-        <Button className='md:hidden'>
-          <IoMenu className='mr-2 w-5 h-5' />
-          Menu
+        <Button asChild>
+          <div className='md:hidden'>
+            <IoMenu className='mr-2 w-5 h-5' />
+            Menu
+          </div>
         </Button>
       </SheetTrigger>
       <SheetContent className='flex flex-col items-center'>

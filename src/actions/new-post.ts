@@ -4,6 +4,7 @@ import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { NewPostSchema } from '@/schemas'
 import { saveFile } from '@/service/file-service'
+import { revalidatePath } from 'next/cache'
 import * as z from 'zod'
 
 export const addpost = async (
@@ -28,5 +29,7 @@ export const addpost = async (
       image: fileName,
     },
   })
+  revalidatePath('/my-suggestions')
+  revalidatePath('/admin')
   return { succes: 'Post sent' }
 }

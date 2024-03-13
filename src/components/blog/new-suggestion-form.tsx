@@ -41,11 +41,12 @@ const NewSuggestionForm = () => {
       addpost(values, file)
         .then((data) => {
           if (data.error) {
-            form.reset()
             setError(data.error)
           }
           if (data.succes) {
             form.reset()
+            setImage(undefined)
+            setFile(null)
             setSucces(data.succes)
           }
         })

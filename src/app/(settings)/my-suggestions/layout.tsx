@@ -1,7 +1,7 @@
 import RoleGate from '@/components/role-gate'
 import { Card, CardHeader } from '@/components/ui/card'
 import { UserRole } from '@prisma/client'
-import Navbar from '../admin/_components/navbar'
+import Navbar from './nav'
 
 const SuggestionsLayout = ({ children }: { children: React.ReactNode }) => {
   return (

@@ -9,7 +9,9 @@ export default function UserInfo({ user, label }: Props) {
   return (
     <Card className='shadow-md'>
       <CardHeader>
-        <p className='text-2xl font-semibold text-center'>{label}</p>
+        <p className='text-2xl font-semibold text-center tracking-widest'>
+          {label}
+        </p>
       </CardHeader>
       <CardContent className='space-y-4'>
         <div className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-md gap-2'>

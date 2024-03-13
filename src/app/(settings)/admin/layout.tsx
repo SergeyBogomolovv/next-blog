@@ -1,7 +1,7 @@
 import RoleGate from '@/components/role-gate'
 import { Card, CardHeader } from '@/components/ui/card'
 import { UserRole } from '@prisma/client'
-import Navbar from './_components/navbar'
+import Navbar from './nav'
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -11,7 +11,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
           <h1 className='text-2xl tracking-widest font-semibold text-center mb-3'>
             Dashboard
           </h1>
-          <Navbar admin />
+          <Navbar />
         </CardHeader>
       </Card>
       <RoleGate allowedRole={UserRole.ADMIN}>

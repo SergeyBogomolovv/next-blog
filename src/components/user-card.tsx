@@ -1,8 +1,8 @@
 import { FaUser } from 'react-icons/fa'
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
-import { Badge } from '@/components/ui/badge'
 import { HoverCard, HoverCardContent, HoverCardTrigger } from './ui/hover-card'
 import { User } from '@prisma/client'
+import { Badge } from './ui/badge'
 
 interface Props {
   user: User
@@ -12,11 +12,8 @@ interface Props {
 export default function UserCard({ user, label }: Props) {
   return (
     <HoverCard>
-      <HoverCardTrigger>
-        <Badge
-          variant={'outline'}
-          className='flex items-center w-fit cursor-pointer'
-        >
+      <HoverCardTrigger className='flex w-fit items-center cursor-pointer'>
+        <Badge variant={'outline'}>
           <Avatar className='w-9 h-9 mr-3'>
             <AvatarImage src={user?.image || ''} />
             <AvatarFallback className='bg-black dark:bg-white p-2'>
