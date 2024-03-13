@@ -14,9 +14,7 @@ const SuggestionsLayout = ({ children }: { children: React.ReactNode }) => {
           <Navbar />
         </CardHeader>
       </Card>
-      <RoleGate allowedRole={UserRole.ADMIN}>
-        <div className='space-y-8'>{children}</div>
-      </RoleGate>
+      <div className='space-y-8'>{children}</div>
     </div>
   )
 }
