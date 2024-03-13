@@ -36,7 +36,6 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
         return { error: 'Invalid token' }
       }
       if (twoFactorToken.token !== code) {
-        console.log(code)
         return { error: 'Invalid token' }
       }
       const hasExpired = new Date(twoFactorToken.expires) < new Date()
@@ -70,9 +69,9 @@ export const login = async (values: z.infer<typeof LoginSchema>) => {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return { error: 'invalid credentials' }
+          return { error: 'Invalid credentials' }
         default:
-          return { error: 'something went wrong' }
+          return { error: 'Something went wrong' }
       }
     }
     throw error
