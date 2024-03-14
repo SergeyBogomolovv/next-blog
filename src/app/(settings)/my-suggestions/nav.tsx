@@ -1,50 +1,59 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
 import { BsBan } from 'react-icons/bs'
 import { CiClock2 } from 'react-icons/ci'
 import { MdPublic } from 'react-icons/md'
 
-export default function Navbar() {
+export default function NavTest() {
   const pathname = usePathname()
   return (
-    <nav className='flex gap-4 md:flex-row flex-col w-full items-center justify-center'>
-      <Button
-        asChild
-        variant={pathname === '/my-suggestions' ? 'default' : 'outline'}
-        className='w-full'
-      >
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Button variant={'secondary'} asChild>
+          <div>
+            {pathname === '/my-suggestions' && (
+              <CiClock2 className='w-4 h-4 mr-2' />
+            )}
+            {pathname === '/my-suggestions/published' && (
+              <MdPublic className='w-4 h-4 mr-2' />
+            )}
+            {pathname === '/my-suggestions/declined' && (
+              <BsBan className='w-4 h-4 mr-2' />
+            )}
+            {pathname === '/my-suggestions' && 'Waiting'}
+            {pathname === '/my-suggestions/published' && 'Published'}
+            {pathname === '/my-suggestions/declined' && 'Declined'}
+          </div>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='w-40' align='end'>
         <Link href={'/my-suggestions'}>
-          <CiClock2 className='w-5 h-5 mr-2' />
-          Waiting
+          <DropdownMenuItem>
+            <CiClock2 className='w-4 h-4 mr-2' />
+            Waiting
+          </DropdownMenuItem>
         </Link>
-      </Button>
-      <Button
-        asChild
-        variant={
-          pathname === '/my-suggestions/published' ? 'default' : 'outline'
-        }
-        className='w-full'
-      >
         <Link href={'/my-suggestions/published'}>
-          <MdPublic className='w-5 h-5 mr-2' />
-          Published
+          <DropdownMenuItem>
+            <MdPublic className='w-4 h-4 mr-2' />
+            Published
+          </DropdownMenuItem>
         </Link>
-      </Button>
-      <Button
-        asChild
-        variant={
-          pathname === '/my-suggestions/declined' ? 'default' : 'outline'
-        }
-        className='w-full'
-      >
         <Link href={'/my-suggestions/declined'}>
-          <BsBan className='w-5 h-5 mr-2' />
-          Declined
+          <DropdownMenuItem>
+            <BsBan className='w-4 h-4 mr-2' />
+            Declined
+          </DropdownMenuItem>
         </Link>
-      </Button>
-    </nav>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

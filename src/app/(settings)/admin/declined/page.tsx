@@ -18,7 +18,7 @@ export default async function DeclinedPostsAdmin() {
           ))}
         </>
       ) : (
-        <EmptyAdminCard />
+        <EmptyAdminCard type='declined' />
       )}
     </>
   )

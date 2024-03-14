@@ -24,7 +24,8 @@ export default async function Suggestion({
   author,
 }: Props) {
   const user = await currentUser()
-  const postDate = post.createdAt.toLocaleDateString()
+  const postDate = post.createdAt.toDateString()
+
   return (
     <Card>
       <CardHeader>
@@ -49,23 +50,19 @@ export default async function Suggestion({
       <Separator className='mb-5' />
       <CardFooter className='flex flex-col gap-6'>
         {!showAdminFeatures && (
-          <>
-            <SuggestionStatusComponent status={post.status} />
-          </>
+          <SuggestionStatusComponent status={post.status} />
         )}
-        <>
-          {showAdminFeatures && user?.role === UserRole.ADMIN ? (
-            <>
-              {showAdminFeatures && post.status !== 'waiting' ? (
-                <SuggestionButtons type='admin-checked' post={post} />
-              ) : (
-                <SuggestionButtons type='admin' post={post} />
-              )}
-            </>
-          ) : (
-            <SuggestionButtons type='user' post={post} />
-          )}
-        </>
+        {showAdminFeatures && user?.role === UserRole.ADMIN ? (
+          <>
+            {showAdminFeatures && post.status !== 'waiting' ? (
+              <SuggestionButtons type='admin-checked' post={post} />
+            ) : (
+              <SuggestionButtons type='admin' post={post} />
+            )}
+          </>
+        ) : (
+          <SuggestionButtons type='user' post={post} />
+        )}
       </CardFooter>
     </Card>
   )

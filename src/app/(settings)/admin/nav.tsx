@@ -1,45 +1,56 @@
 'use client'
 import { Button } from '@/components/ui/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import React from 'react'
 import { BsBan, BsCheck2Circle } from 'react-icons/bs'
 import { CiClock2 } from 'react-icons/ci'
 
-export default function Navbar() {
+export default function NavigationButton() {
   const pathname = usePathname()
   return (
-    <nav className='flex gap-4 md:flex-row flex-col w-full items-center justify-center'>
-      <Button
-        asChild
-        variant={pathname === '/admin' ? 'default' : 'outline'}
-        className='w-full'
-      >
+    <DropdownMenu>
+      <DropdownMenuTrigger>
+        <Button variant={'secondary'} asChild>
+          <div>
+            {pathname === '/admin' && <CiClock2 className='w-4 h-4 mr-2' />}
+            {pathname === '/admin/accepted' && (
+              <BsCheck2Circle className='w-4 h-4 mr-2' />
+            )}
+            {pathname === '/admin/declined' && (
+              <BsBan className='w-4 h-4 mr-2' />
+            )}
+            {pathname === '/admin' && 'Waiting'}
+            {pathname === '/admin/accepted' && 'Accepted'}
+            {pathname === '/admin/declined' && 'Declined'}
+          </div>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className='w-40' align='end'>
         <Link href={'/admin'}>
-          <CiClock2 className='w-5 h-5 mr-2' />
-          Latest
+          <DropdownMenuItem>
+            <CiClock2 className='w-4 h-4 mr-2' />
+            Latest
+          </DropdownMenuItem>
         </Link>
-      </Button>
-      <Button
-        asChild
-        variant={pathname === '/admin/accepted' ? 'default' : 'outline'}
-        className='w-full'
-      >
         <Link href={'/admin/accepted'}>
-          <BsCheck2Circle className='w-5 h-5 mr-2' />
-          Accepted
+          <DropdownMenuItem>
+            <BsCheck2Circle className='w-4 h-4 mr-2' />
+            Accepted
+          </DropdownMenuItem>
         </Link>
-      </Button>
-      <Button
-        asChild
-        variant={pathname === '/admin/declined' ? 'default' : 'outline'}
-        className='w-full'
-      >
         <Link href={'/admin/declined'}>
-          <BsBan className='w-5 h-5 mr-2' />
-          Declined
+          <DropdownMenuItem>
+            <BsBan className='w-4 h-4 mr-2' />
+            Declined
+          </DropdownMenuItem>
         </Link>
-      </Button>
-    </nav>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }

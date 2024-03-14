@@ -9,43 +9,38 @@ import Link from 'next/link'
 
 const font = Orbitron({ subsets: ['latin'], weight: '600' })
 import { FaReadme } from 'react-icons/fa6'
+import { Comment, Post, User } from '@prisma/client'
+import UserCard from '../user-card'
 interface Props {
-  title: string
-  image: string
-  description: string
-  comments: number
-  id: string
+  post: Post
+  comments: Comment[]
+  author: User
 }
 
-export default function Post({
-  title,
-  image,
-  description,
-  comments,
-  id,
-}: Props) {
+export default function Post({ post, comments, author }: Props) {
   return (
     <Card>
       <CardHeader>
         <h2 className={cn('text-2xl tracking-wide', font.className)}>
-          {title}
+          {post.title}
         </h2>
       </CardHeader>
       <Image
-        src={`/${image}`}
+        src={post.image}
         alt=''
         width={500}
         height={500}
         className='w-full object-cover aspect-video'
       />
       <Separator className='mb-6' />
-      <CardContent>
-        <p className='text-sm'>{description}</p>
+      <CardContent className='flex flex-col gap-4'>
+        <p className='text-sm'>{post.content}</p>
+        <UserCard label='Author' user={author} />
       </CardContent>
       <CardFooter className='flex justify-between items-center'>
-        <div>Comments: {comments}</div>
+        <div>Comments: {comments.length}</div>
         <Button size='sm' variant={'outline'} asChild>
-          <Link href={`${process.env.BASE_URL}/posts/${id}`}>
+          <Link href={`${process.env.BASE_URL}/posts/${post.id}`}>
             <FaReadme className='mr-2 w-4 h-4' />
             Read More
           </Link>

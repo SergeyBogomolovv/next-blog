@@ -8,6 +8,8 @@ import { MdDeleteForever } from 'react-icons/md'
 import { deletePost } from '@/actions/posts'
 import { useTransition } from 'react'
 import { toast } from 'sonner'
+import EditPostModal from './edit-post-modal'
+import { usePathname } from 'next/navigation'
 
 interface Props {
   post: Post
@@ -15,6 +17,7 @@ interface Props {
 }
 
 export default function SuggestionButtons({ post, type }: Props) {
+  const pathname = usePathname()
   const [pending, startTransition] = useTransition()
   const declinehandler = () => {
     startTransition(() => {
@@ -28,6 +31,7 @@ export default function SuggestionButtons({ post, type }: Props) {
       })
     })
   }
+
   const accepthandler = () => {
     startTransition(() => {
       setPostAccepted(post.id).then((data) => {
@@ -40,6 +44,7 @@ export default function SuggestionButtons({ post, type }: Props) {
       })
     })
   }
+
   const deletehandler = () => {
     startTransition(() => {
       deletePost(post.id).then((data) => {
@@ -63,7 +68,7 @@ export default function SuggestionButtons({ post, type }: Props) {
           </Button>
           <Button
             disabled={pending}
-            onClick={deletehandler}
+            onClick={declinehandler}
             variant={'destructive'}
           >
             <BsBan className='w-5 h-5 mr-2' />
@@ -73,10 +78,15 @@ export default function SuggestionButtons({ post, type }: Props) {
       )}
       {type === 'user' && (
         <>
-          <Button disabled={pending} variant={'outline'}>
-            <CiEdit className='w-5 h-5 mr-2' />
-            Edit
-          </Button>
+          <EditPostModal post={post}>
+            <Button
+              disabled={pending || pathname === '/my-suggestions/published'}
+              variant={'outline'}
+            >
+              <CiEdit className='w-5 h-5 mr-2' />
+              Edit
+            </Button>
+          </EditPostModal>
           <Button
             disabled={pending}
             onClick={deletehandler}

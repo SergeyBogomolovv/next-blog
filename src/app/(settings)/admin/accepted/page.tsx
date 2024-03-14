@@ -18,7 +18,7 @@ export default async function AcceptedPosts() {
           ))}
         </>
       ) : (
-        <EmptyAdminCard />
+        <EmptyAdminCard type='accepted' />
       )}
     </>
   )

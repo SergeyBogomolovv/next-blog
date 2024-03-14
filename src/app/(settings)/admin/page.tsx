@@ -4,6 +4,7 @@ import EmptyAdminCard from '../_components/empty-admin-card'
 
 const AdminPage = async () => {
   const suggestions = await getAllWaitingSuggestions()
+
   return (
     <>
       {suggestions.length ? (
@@ -18,7 +19,7 @@ const AdminPage = async () => {
           ))}
         </>
       ) : (
-        <EmptyAdminCard />
+        <EmptyAdminCard type='latest' />
       )}
     </>
   )

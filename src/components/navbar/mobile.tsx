@@ -1,3 +1,4 @@
+'use client'
 import {
   Sheet,
   SheetContent,
@@ -15,10 +16,10 @@ import { BsFillPersonFill } from 'react-icons/bs'
 import { FaCreativeCommonsSamplingPlus, FaHome } from 'react-icons/fa'
 import { TbWorldQuestion } from 'react-icons/tb'
 import { SiApostrophe } from 'react-icons/si'
-import { auth } from '@/lib/auth'
+import { useCurrentUser } from '@/hooks/use-current-user'
 
-export default async function MobileNav() {
-  const session = await auth()
+export default function MobileNav() {
+  const user = useCurrentUser()
   return (
     <Sheet>
       <SheetTrigger>
@@ -58,7 +59,7 @@ export default async function MobileNav() {
               About
             </Link>
           </Button>
-          {session?.user ? (
+          {user ? (
             <UserButton />
           ) : (
             <Button variant={'outline'} asChild>

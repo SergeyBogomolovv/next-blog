@@ -8,10 +8,10 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     <div className='flex flex-col gap-8 justify-center-center'>
       <Card>
         <CardHeader>
-          <h1 className='text-2xl tracking-widest font-semibold text-center mb-3'>
-            Dashboard
-          </h1>
-          <Navbar />
+          <div className='flex justify-between items-center'>
+            <h1 className='text-2xl font-semibold'>Dashboard</h1>
+            <Navbar />
+          </div>
         </CardHeader>
       </Card>
       <RoleGate allowedRole={UserRole.ADMIN}>

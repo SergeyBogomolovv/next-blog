@@ -20,10 +20,11 @@ export default function UserCard({ user, label }: Props) {
               <FaUser className='text-white dark:text-black h-full w-full' />
             </AvatarFallback>
           </Avatar>
+
           <div className='flex flex-col'>
             <p className='text-sm font-semibold'>{label}</p>
             <p className='text-sm text-muted-foreground font-semibold'>
-              {user?.name}
+              {user.name}
             </p>
           </div>
         </Badge>
@@ -31,7 +32,7 @@ export default function UserCard({ user, label }: Props) {
       <HoverCardContent className='w-full'>
         <div className='flex items-center gap-x-4'>
           <Avatar className='w-32 h-32'>
-            <AvatarImage src={user?.image || ''} />
+            <AvatarImage src={user.image || ''} />
             <AvatarFallback className='bg-black dark:bg-white p-8'>
               <FaUser className='text-white dark:text-black h-full w-full' />
             </AvatarFallback>
@@ -40,13 +41,13 @@ export default function UserCard({ user, label }: Props) {
             <div className='flex flex-row items-center justify-between rounded-lg border p-2 shadow-md gap-2'>
               <p className='text-sm font-medium'>ID</p>
               <p className='truncate text-xs max-w-[180px] font-mono p-2 bg-secondary rounded-md'>
-                {user?.id}
+                {user.id}
               </p>
             </div>
             <div className='flex flex-row items-center justify-between rounded-lg border p-2 shadow-md gap-2'>
               <p className='text-sm font-medium'>Email</p>
               <p className='truncate text-xs max-w-[180px] font-mono p-2 bg-secondary rounded-md'>
-                {user?.email}
+                {user.email}
               </p>
             </div>
             <div className='flex flex-row items-center justify-between rounded-lg border p-2 shadow-md gap-2'>

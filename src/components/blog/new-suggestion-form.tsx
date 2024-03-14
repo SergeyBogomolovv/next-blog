@@ -87,7 +87,7 @@ const NewSuggestionForm = () => {
             alt=''
             width={500}
             height={500}
-            className='w-full mb-4'
+            className='w-full mb-4 object-cover aspect-video'
           />
         )}
         <input
