@@ -7,6 +7,7 @@ import { db } from '@/lib/db'
 import { generateVerificationToken } from '@/lib/tokens'
 import { sendVerificationEmail } from '@/lib/mail'
 import { signOut } from '@/lib/auth'
+import { saveFile } from '@/service/file-service'
 
 export const settings = async (values: z.infer<typeof SettingsSchema>) => {
   const validatedFields = SettingsSchema.safeParse(values)
@@ -45,4 +46,21 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
     data: { ...validatedFields.data },
   })
   return { succes: 'Settings updated' }
+}
+export const changeLogo = async (data: FormData) => {
+  const image = data.get('image')
+  if (!image) return { error: 'Invalid fields' }
+  const user = await currentUser()
+  const dbUser = await getUserById(user?.id)
+  if (!dbUser) return { error: 'No acces' }
+  try {
+    const newLogoName = await saveFile(image)
+    await db.user.update({
+      where: { id: dbUser.id },
+      data: { image: newLogoName },
+    })
+    return { succes: 'Logo updated', logo: newLogoName }
+  } catch (error) {
+    return { error: 'InvalidFile' }
+  }
 }

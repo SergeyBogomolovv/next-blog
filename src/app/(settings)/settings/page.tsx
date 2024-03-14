@@ -1,6 +1,7 @@
 'use client'
 
 import { settings } from '@/actions/settings'
+import ChangeLogoButton from '@/components/change-logo-button'
 import FormError from '@/components/form-error'
 import FormSucces from '@/components/form-succes'
 import { Button } from '@/components/ui/button'
@@ -155,6 +156,7 @@ const Settings = () => {
                   />
                 </>
               )}
+              <ChangeLogoButton />
             </div>
             <FormError message={error} />
             <FormSucces message={succes} />

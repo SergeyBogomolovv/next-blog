@@ -56,12 +56,13 @@ export const {
             email: token.email,
             isOAuth: token.isOAuth as boolean,
             isTwoFactorEnabled: token.isTwoFactorEnabled as boolean,
+            image: token.image as string,
           },
         }
       }
       return session
     },
-    async jwt({ token }) {
+    async jwt({ token, trigger, session }) {
       if (!token.sub) return token
       const existingUser = await getUserById(token.sub)
       if (!existingUser) return token
@@ -71,6 +72,7 @@ export const {
       token.email = existingUser.email
       token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled
       token.role = existingUser.role
+      token.image = existingUser.image
       return token
     },
   },

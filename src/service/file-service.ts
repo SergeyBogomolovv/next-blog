@@ -11,7 +11,6 @@ export async function saveFile(file: File | any): Promise<string> {
     if (!fs.existsSync(filePath)) {
       fs.mkdirSync(filePath, { recursive: true })
     }
-    console.log(filePath)
     fs.writeFileSync(path.join(filePath, fileName), fileBuffer)
     return `/posts/${fileName}`
   } catch (error) {
