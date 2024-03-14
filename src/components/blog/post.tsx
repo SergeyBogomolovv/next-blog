@@ -17,7 +17,7 @@ interface Props {
   author: User
 }
 
-export default function Post({ post, comments, author }: Props) {
+export default function PostCard({ post, comments, author }: Props) {
   return (
     <Card>
       <CardHeader>
