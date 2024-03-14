@@ -15,7 +15,7 @@ export default function Navbar() {
   const user = useCurrentUser()
   return (
     <Headroom>
-      <div className='flex justify-between items-center py-3 lg:px-20 px-3 sm:px-8 md:px-12 bg-black'>
+      <div className='flex justify-between items-center py-3 lg:px-20 px-3 sm:px-8 md:px-12 dark:bg-black bg-white'>
         <Links />
         <MobileNav />
         <div className='md:flex gap-8 items-center hidden'>
