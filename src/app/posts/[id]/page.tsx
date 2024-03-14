@@ -1,8 +1,7 @@
 import { findPostById } from '@/data/posts'
 
 const Post = async ({ searchParams }: any) => {
-  console.log(searchParams)
-  return <div>{searchParams.id}</div>
+  return <div></div>
 }
 
 export default Post

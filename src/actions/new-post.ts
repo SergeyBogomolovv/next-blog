@@ -34,5 +34,6 @@ export const addpost = async (
     return { succes: 'Post sent' }
   } catch (error) {
     console.log(error)
+    return { error: 'Something went wrong on server' }
   }
 }
