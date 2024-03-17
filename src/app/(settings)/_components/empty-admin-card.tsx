@@ -10,7 +10,6 @@ export default function EmptyAdminCard({ type }: Props) {
     <Card>
       <CardHeader>
         <h1 className='text-2xl text-center font-bold tracking-widest flex items-center justify-center'>
-          {type === 'latest' && <CheckCircledIcon className='w-7 h-7 mr-2' />}
           {type === 'latest' && 'All suggestions checked!'}
           {type === 'accepted' && 'Hm, our blog is empty'}
           {type === 'declined' && 'No declined Suggestions'}

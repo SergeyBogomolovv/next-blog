@@ -46,14 +46,14 @@ export default function ChangeLogoButton() {
   }
 
   return (
-    <div className='flex flex-row justify-between items-center rounded-lg border p-3 shadow-md'>
+    <div className='flex md:flex-row flex-col gap-4 justify-between items-center rounded-lg border p-3 shadow-md'>
       <div className='flex items-center gap-4'>
         <Image
           src={image || user?.image || '/noavatar.png'}
           alt=''
           width={500}
           height={500}
-          className='w-16 h-16 aspect-square object-cover rounded-lg'
+          className='md:w-16 md:h-16 w-full aspect-square object-cover rounded-lg'
         />
         <FormError message={error} />
         <FormSucces message={succes} />
@@ -81,6 +81,7 @@ export default function ChangeLogoButton() {
           variant={image ? 'outline' : 'default'}
           type='button'
           onClick={onSubmit}
+          className='w-full md:w-fit'
         >
           Submit
         </Button>
@@ -89,6 +90,7 @@ export default function ChangeLogoButton() {
           variant={image ? 'outline' : 'default'}
           type='button'
           onClick={() => inputRef.current?.click()}
+          className='w-full md:w-fit'
         >
           <CiImageOn className='w-5 h-5 mr-2' />
           Change Logo

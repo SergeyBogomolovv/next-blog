@@ -16,19 +16,19 @@ const Post = async ({ params }: { params: { id: string } }) => {
   const time = post?.createdAt.toLocaleTimeString()
 
   return (
-    <main className='container my-10 flex flex-col items-center w-9/12'>
+    <main className='container my-10 flex flex-col items-center xl:w-9/12 lg:w-10/12 md:w-11/12 w-full'>
       {post ? (
         <>
-          <div className='flex justify-between w-full'>
+          <div className='flex md:flex-row flex-col gap-3 md:justify-between w-full'>
             <h1
               className={cn(
-                'md:text-4xl sm:text-3xl text-2xl font-extrabold tracking-widest',
+                'md:text-4xl text-2xl font-extrabold tracking-widest',
                 font.className
               )}
             >
               {post.title}
             </h1>
-            <div className='flex items-center gap-4 self-end'>
+            <div className='flex items-center gap-4 md:self-end'>
               <UserCard user={post.author} label='Author' />
               <div className='text-sm text-muted-foreground'>
                 <p>Published: {date}</p>
@@ -42,7 +42,7 @@ const Post = async ({ params }: { params: { id: string } }) => {
             alt=''
             width={1000}
             height={1000}
-            className='w-10/12 aspect-video object-cover rounded-md'
+            className='lg:w-10/12 w-full aspect-video object-cover rounded-md'
           />
 
           <Separator className='my-5' />

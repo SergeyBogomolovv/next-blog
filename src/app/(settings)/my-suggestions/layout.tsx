@@ -3,11 +3,13 @@ import NavTest from './nav'
 
 const SuggestionsLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className='flex flex-col gap-8 justify-center-center'>
+    <div className='flex flex-col gap-8 justify-center w-full'>
       <Card>
         <CardHeader>
-          <div className='flex justify-between items-center'>
-            <h1 className='text-2xl font-semibold'>My Suggestions</h1>
+          <div className='flex justify-between items-center gap-10'>
+            <h1 className='md:text-2xl text-xl font-semibold'>
+              My Suggestions
+            </h1>
             <NavTest />
           </div>
         </CardHeader>

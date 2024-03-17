@@ -19,6 +19,8 @@ import { Card, CardContent, CardHeader } from '../ui/card'
 import { Orbitron } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { comment } from '@/actions/comment'
+import { MdAddComment } from 'react-icons/md'
+
 const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
 
 export default function CommentForm({ postId }: { postId: string }) {
@@ -83,7 +85,8 @@ export default function CommentForm({ postId }: { postId: string }) {
               )}
             />
             <div className='flex items-center gap-4'>
-              <Button disabled={isPending} type='submit' size={'lg'}>
+              <Button disabled={isPending} type='submit'>
+                <MdAddComment className='w-5 h-5 mr-2' />
                 Add comment
               </Button>
               <FormError message={error} />
