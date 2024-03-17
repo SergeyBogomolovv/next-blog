@@ -27,9 +27,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { EditPostSchema } from '@/schemas'
 import * as z from 'zod'
-import { editPost } from '@/actions/edit-post'
 import { toast } from 'sonner'
 import Image from 'next/image'
+import { editPost } from '@/actions/posts'
 
 interface Props {
   post: Post

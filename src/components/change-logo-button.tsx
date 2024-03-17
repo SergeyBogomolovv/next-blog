@@ -32,6 +32,7 @@ export default function ChangeLogoButton() {
         .then((data) => {
           if (data.error) {
             setError(data.error)
+            toast.error(data.error)
           }
           if (data.succes) {
             setImage(undefined)
@@ -55,8 +56,10 @@ export default function ChangeLogoButton() {
           height={500}
           className='md:w-16 md:h-16 w-full aspect-square object-cover rounded-lg'
         />
-        <FormError message={error} />
-        <FormSucces message={succes} />
+        <div className='hidden md:block'>
+          <FormError message={error} />
+          <FormSucces message={succes} />
+        </div>
       </div>
 
       <input

@@ -21,9 +21,9 @@ import { Card, CardContent, CardHeader } from '../ui/card'
 import { Textarea } from '../ui/textarea'
 import Image from 'next/image'
 import { CiImageOn } from 'react-icons/ci'
-import { addpost } from '@/actions/new-post'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
+import { addpost } from '@/actions/posts'
 
 const NewSuggestionForm = () => {
   const [image, setImage] = useState<string | undefined>()

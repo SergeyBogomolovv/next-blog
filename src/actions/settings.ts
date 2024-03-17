@@ -48,24 +48,20 @@ export const settings = async (values: z.infer<typeof SettingsSchema>) => {
   })
   return { succes: 'Settings updated' }
 }
+
 export const changeLogo = async (data: FormData) => {
   const image = data.get('image')
   if (!image) return { error: 'Invalid fields' }
   const user = await currentUser()
   const dbUser = await getUserById(user?.id)
   if (!dbUser) return { error: 'No acces' }
-  try {
-    const fileName = uuid() + '.jpg'
-    if (dbUser.image) await del(dbUser.image)
-    const blob = await put(fileName, image, {
-      access: 'public',
-    })
-    await db.user.update({
-      where: { id: dbUser.id },
-      data: { image: blob.url },
-    })
-    return { succes: 'Logo updated', logo: blob.url }
-  } catch (error) {
-    return { error: 'InvalidFile' }
-  }
+  const fileName = uuid() + '.jpg'
+  const blob = await put(fileName, image, {
+    access: 'public',
+  })
+  await db.user.update({
+    where: { id: dbUser.id },
+    data: { image: blob.url },
+  })
+  return { succes: 'Logo updated', logo: blob.url }
 }
