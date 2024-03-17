@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { BsBan, BsCheck2Circle } from 'react-icons/bs'
 import { CiClock2 } from 'react-icons/ci'
+import { FaCaretDown } from 'react-icons/fa'
 
 export default function NavigationButton() {
   const pathname = usePathname()
@@ -25,9 +26,10 @@ export default function NavigationButton() {
             {pathname === '/admin/declined' && (
               <BsBan className='w-4 h-4 mr-2' />
             )}
-            {pathname === '/admin' && 'Waiting'}
+            {pathname === '/admin' && 'Latest'}
             {pathname === '/admin/accepted' && 'Accepted'}
             {pathname === '/admin/declined' && 'Declined'}
+            <FaCaretDown className='w-3 h-3 ml-2' />
           </div>
         </Button>
       </DropdownMenuTrigger>

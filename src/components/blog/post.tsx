@@ -34,7 +34,7 @@ export default function PostCard({ post, comments, author }: Props) {
       />
       <Separator className='mb-6' />
       <CardContent className='flex flex-col gap-4'>
-        <p className='text-sm'>{post.content}</p>
+        <p className='text-sm flex-grow'>{post.content}</p>
         <UserCard label='Author' user={author} />
       </CardContent>
       <CardFooter className='flex justify-between items-center'>

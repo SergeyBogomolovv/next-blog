@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { BsBan } from 'react-icons/bs'
 import { CiClock2 } from 'react-icons/ci'
+import { FaCaretDown } from 'react-icons/fa'
 import { MdPublic } from 'react-icons/md'
 
 export default function NavTest() {
@@ -31,6 +32,7 @@ export default function NavTest() {
             {pathname === '/my-suggestions' && 'Waiting'}
             {pathname === '/my-suggestions/published' && 'Published'}
             {pathname === '/my-suggestions/declined' && 'Declined'}
+            <FaCaretDown className='w-3 h-3 ml-2' />
           </div>
         </Button>
       </DropdownMenuTrigger>

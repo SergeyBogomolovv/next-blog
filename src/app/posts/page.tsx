@@ -32,7 +32,12 @@ const PostsPage = async () => {
       <Separator className='my-5' />
       <div className='grid md:grid-cols-2 gap-8'>
         {posts.map((post) => (
-          <Post author={post.author} comments={post.comments} post={post} />
+          <Post
+            key={post.id}
+            author={post.author}
+            comments={post.comments}
+            post={post}
+          />
         ))}
       </div>
     </main>

@@ -33,3 +33,6 @@ export const EditPostSchema = z.object({
   title: z.string().min(4).optional(),
   content: z.string().min(10).optional(),
 })
+export const CommentSchema = z.object({
+  content: z.string().min(3).max(250),
+})

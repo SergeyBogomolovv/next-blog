@@ -11,6 +11,9 @@ export const getAllPosts = async () => {
   const posts = await db.post.findMany({
     where: { status: 'accepted' },
     include: { comments: true, author: true },
+    orderBy: {
+      createdAt: 'desc',
+    },
   })
   return posts
 }
