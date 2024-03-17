@@ -5,8 +5,9 @@ import { EditPostSchema } from '@/schemas'
 import * as z from 'zod'
 import { currentUser } from './current-user'
 import { db } from '@/lib/db'
-import { deleteFile, saveFile } from '@/service/file-service'
 import { postRevalidate } from './post-revalidation'
+import { del, put } from '@vercel/blob'
+import { v4 as uuid } from 'uuid'
 
 export const editPost = async (
   values: z.infer<typeof EditPostSchema>,
@@ -19,15 +20,19 @@ export const editPost = async (
   if (!post) return { error: 'Post not found' }
   const user = await currentUser()
   if (user?.id !== post.authorId) return { error: 'No acces' }
-  let fileName = post.image
-  if (imageData instanceof FormData) {
-    const image = imageData?.get('image')
-    fileName = await saveFile(image)
-    deleteFile(post.image)
+  let imageName = post.image
+  const image = imageData?.get('image')
+  if (image) {
+    await del(post.image)
+    const fileName = uuid() + '.jpg'
+    const blob = await put(fileName, image, {
+      access: 'public',
+    })
+    imageName = blob.url
   }
   await db.post.update({
     where: { id: postId },
-    data: { ...values, image: fileName },
+    data: { ...values, image: imageName },
   })
   postRevalidate()
   return { succes: 'Post updated' }

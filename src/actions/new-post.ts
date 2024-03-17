@@ -3,9 +3,10 @@ import { getUserById } from '@/data/user'
 import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { NewPostSchema } from '@/schemas'
-import { saveFile } from '@/service/file-service'
 import * as z from 'zod'
 import { postRevalidate } from './post-revalidation'
+import { put } from '@vercel/blob'
+import { v4 as uuid } from 'uuid'
 
 export const addpost = async (
   values: z.infer<typeof NewPostSchema>,
@@ -14,7 +15,10 @@ export const addpost = async (
   try {
     const image = fileData.get('image')
     if (!image) return { error: 'Image is required' }
-    const fileName = await saveFile(image)
+    const fileName = uuid() + '.jpg'
+    const blob = await put(fileName, image, {
+      access: 'public',
+    })
     const validateFields = NewPostSchema.safeParse(values)
     if (!validateFields) {
       return { error: 'Invalid fields' }
@@ -27,7 +31,7 @@ export const addpost = async (
         title: values.title,
         content: values.content,
         authorId: dbUser.id,
-        image: fileName,
+        image: blob.url,
       },
     })
     postRevalidate()

@@ -7,7 +7,8 @@ import { db } from '@/lib/db'
 import { generateVerificationToken } from '@/lib/tokens'
 import { sendVerificationEmail } from '@/lib/mail'
 import { signOut } from '@/lib/auth'
-import { saveFile } from '@/service/file-service'
+import { v4 as uuid } from 'uuid'
+import { del, put } from '@vercel/blob'
 
 export const settings = async (values: z.infer<typeof SettingsSchema>) => {
   const validatedFields = SettingsSchema.safeParse(values)
@@ -54,12 +55,16 @@ export const changeLogo = async (data: FormData) => {
   const dbUser = await getUserById(user?.id)
   if (!dbUser) return { error: 'No acces' }
   try {
-    const newLogoName = await saveFile(image)
+    const fileName = uuid() + '.jpg'
+    if (dbUser.image) await del(dbUser.image)
+    const blob = await put(fileName, image, {
+      access: 'public',
+    })
     await db.user.update({
       where: { id: dbUser.id },
-      data: { image: newLogoName },
+      data: { image: blob.url },
     })
-    return { succes: 'Logo updated', logo: newLogoName }
+    return { succes: 'Logo updated', logo: blob.url }
   } catch (error) {
     return { error: 'InvalidFile' }
   }
