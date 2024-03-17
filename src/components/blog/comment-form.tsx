@@ -20,10 +20,11 @@ import { Orbitron } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { comment } from '@/actions/comment'
 import { MdAddComment } from 'react-icons/md'
-
+import { useCurrentUser } from '@/hooks/use-current-user'
 const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
 
 export default function CommentForm({ postId }: { postId: string }) {
+  const user = useCurrentUser()
   const [error, setError] = useState<string | undefined>()
   const [succes, setSucces] = useState<string | undefined>()
   const [isPending, startTransition] = useTransition()
@@ -85,13 +86,17 @@ export default function CommentForm({ postId }: { postId: string }) {
               )}
             />
             <div className='flex items-center gap-4'>
-              <Button disabled={isPending} type='submit'>
-                <MdAddComment className='w-5 h-5 mr-2' />
-                Add comment
-              </Button>
-              <FormError message={error} />
-              <FormSucces message={succes} />
+              {user ? (
+                <Button disabled={isPending} type='submit'>
+                  <MdAddComment className='w-5 h-5 mr-2' />
+                  Add comment
+                </Button>
+              ) : (
+                <FormError message={'Authorize to leave a comment'} />
+              )}
             </div>
+            <FormError message={error} />
+            <FormSucces message={succes} />
           </form>
         </Form>
       </CardContent>

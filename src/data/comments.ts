@@ -14,7 +14,6 @@ export const getCommentsByPostId = async (postId: string) => {
 export const getCommentById = async (id: string) => {
   const comment = await db.comment.findUnique({
     where: { id },
-    include: { post: true, author: true },
   })
   return comment
 }
