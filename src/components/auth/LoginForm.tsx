@@ -29,10 +29,7 @@ import {
 
 const LoginForm = () => {
   const searchParams = useSearchParams()
-  const URL_ERROR =
-    searchParams.get('error') === 'OAuthAccountNotLinked'
-      ? 'Email is already in use'
-      : ''
+
   const [error, setError] = useState<string | undefined>()
   const [succes, setSucces] = useState<string | undefined>()
   const [showTwoFactor, setShowTwofactor] = useState<boolean>()
@@ -59,6 +56,7 @@ const LoginForm = () => {
         .catch(() => setError(''))
     })
   }
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -66,6 +64,7 @@ const LoginForm = () => {
       password: '',
     },
   })
+
   return (
     <CardWrapper
       headerLabel='Welcome back!'
@@ -81,8 +80,8 @@ const LoginForm = () => {
                 control={form.control}
                 name='code'
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Two factor code</FormLabel>
+                  <FormItem className='flex flex-col items-center gap-2'>
+                    <FormLabel className='text-lg'>Two factor code</FormLabel>
                     <FormControl>
                       <InputOTP maxLength={6} disabled={isPending} {...field}>
                         <InputOTPGroup>
@@ -153,7 +152,7 @@ const LoginForm = () => {
               </>
             )}
 
-            <FormError message={error || URL_ERROR} />
+            <FormError message={error} />
             <FormSucces message={succes} />
           </div>
           <Button

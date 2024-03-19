@@ -1,5 +1,4 @@
 'use client'
-
 import { changeLogo } from '@/actions/settings'
 import Image from 'next/image'
 import { useRef, useState, useTransition } from 'react'
@@ -84,6 +83,7 @@ export default function ChangeLogoButton() {
           variant={image ? 'outline' : 'default'}
           type='button'
           onClick={onSubmit}
+          disabled={isPending}
           className='w-full md:w-fit'
         >
           Submit
@@ -92,6 +92,7 @@ export default function ChangeLogoButton() {
         <Button
           variant={image ? 'outline' : 'default'}
           type='button'
+          disabled={isPending}
           onClick={() => inputRef.current?.click()}
           className='w-full md:w-fit'
         >
