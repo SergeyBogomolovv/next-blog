@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils'
 import { Orbitron } from 'next/font/google'
 import Link from 'next/link'
 import { CiBookmarkPlus } from 'react-icons/ci'
-export const tags = ['posts', 'comments']
+
 const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
 
 const PostsPage = async () => {

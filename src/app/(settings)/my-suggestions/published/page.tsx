@@ -2,7 +2,7 @@ import Suggestion from '@/components/blog/suggestion'
 import { auth } from '@/lib/auth'
 import { getAcceptedSuggestionsByUserId } from '@/data/suggestions'
 import EmptySuggestionsCard from '../../_components/empty-suggestions-card'
-export const tags = ['posts']
+
 const Published = async () => {
   const session = await auth()
   const suggestions = await getAcceptedSuggestionsByUserId(session?.user.id)

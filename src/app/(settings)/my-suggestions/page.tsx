@@ -2,7 +2,6 @@ import Suggestion from '@/components/blog/suggestion'
 import { auth } from '@/lib/auth'
 import { getWaitingSuggestionsByUserId } from '@/data/suggestions'
 import EmptySuggestionsCard from '../_components/empty-suggestions-card'
-export const tags = ['posts']
 
 const MyPostsPage = async () => {
   const session = await auth()
