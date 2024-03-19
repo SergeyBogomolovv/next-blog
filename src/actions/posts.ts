@@ -17,15 +17,11 @@ export const deletePost = async (id: string) => {
   const user = await currentUser()
   const post = await findPostById(id)
   if (post?.authorId === user?.id || user?.role === UserRole.ADMIN) {
-    try {
-      await db.post.delete({ where: { id } })
-      if (post?.image) await del(post.image)
-      await db.comment.deleteMany({ where: { postId: post?.id } })
-      revalidateTag('posts')
-      return { succes: 'Post deleted' }
-    } catch (error) {
-      return { error: 'Something went wrong' }
-    }
+    await db.comment.deleteMany({ where: { postId: post?.id } })
+    await db.post.delete({ where: { id } })
+    if (post?.image) await del(post.image)
+    revalidateTag('posts')
+    return { succes: 'Post deleted' }
   }
   return { error: 'No acces' }
 }
