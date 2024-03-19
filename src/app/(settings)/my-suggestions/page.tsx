@@ -7,7 +7,7 @@ const MyPostsPage = async () => {
   const session = await auth()
   const suggestions = await getWaitingSuggestionsByUserId(session?.user.id)
   return (
-    <div className='w-full flex flex-col gap-10'>
+    <div className='flex flex-col gap-10'>
       {suggestions.length ? (
         <>
           {suggestions.map((post) => (

@@ -13,8 +13,9 @@ import { CiClock2 } from 'react-icons/ci'
 import { FaCaretDown } from 'react-icons/fa'
 import { MdPublic } from 'react-icons/md'
 
-export default function NavTest() {
+export default function Nav() {
   const pathname = usePathname()
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>

@@ -1,6 +1,8 @@
 import { ExtendedUser } from '@/auth'
 import React from 'react'
 import { Card, CardContent, CardHeader } from '../ui/card'
+import { Button } from '../ui/button'
+import LogoutButton from './logout-button'
 interface Props {
   user?: ExtendedUser
   label: string
@@ -44,6 +46,11 @@ export default function UserInfo({ user, label }: Props) {
             {user?.isTwoFactorEnabled ? 'ON' : 'OFF'}
           </p>
         </div>
+        <LogoutButton>
+          <Button variant={'destructive'} className='w-full'>
+            Logout
+          </Button>
+        </LogoutButton>
       </CardContent>
     </Card>
   )

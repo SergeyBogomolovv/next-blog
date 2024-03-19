@@ -14,7 +14,6 @@ export default function Loading() {
       <Separator className='mb-5 mt-3' />
       <Skeleton className='lg:w-10/12 w-full aspect-video object-cover rounded-md' />
       <Separator className='my-5' />
-
       <div className='text-muted-foreground'>
         <Skeleton className='h-[10px] w-full' />
         <Skeleton className='h-[10px] w-full' />

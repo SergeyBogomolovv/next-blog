@@ -38,14 +38,16 @@ export const editPost = async (
   const user = await currentUser()
   if (user?.id !== post.authorId) return { error: 'No acces' }
   let imageName = post.image
-  const image = imageData?.get('image')
-  if (image) {
-    await del(post.image)
-    const fileName = uuid() + '.jpg'
-    const blob = await put(fileName, image, {
-      access: 'public',
-    })
-    imageName = blob.url
+  if (imageData instanceof FormData) {
+    const image = imageData.get('image')
+    if (image) {
+      await del(post.image)
+      const fileName = uuid() + '.jpg'
+      const blob = await put(fileName, image, {
+        access: 'public',
+      })
+      imageName = blob.url
+    }
   }
   await db.post.update({
     where: { id: postId },
@@ -80,7 +82,6 @@ export const addpost = async (
         image: blob.url,
       },
     })
-
     revalidateTag('posts')
     return { succes: 'Post sent' }
   } catch (error) {

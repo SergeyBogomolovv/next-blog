@@ -30,7 +30,6 @@ export default auth((req) => {
   if (!isLogginedIn && !isPublicRoute) {
     return Response.redirect(new URL('/auth/login', nextUrl))
   }
-
   return
 })
 

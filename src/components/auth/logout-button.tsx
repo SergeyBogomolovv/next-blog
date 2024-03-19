@@ -10,8 +10,8 @@ export default function LogoutButton({ children }: Props) {
     signOut()
   }
   return (
-    <span onClick={onClick} className='cursor-pointer'>
+    <div onClick={onClick} className='cursor-pointer'>
       {children}
-    </span>
+    </div>
   )
 }
