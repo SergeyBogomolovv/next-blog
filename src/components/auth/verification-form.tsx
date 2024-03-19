@@ -20,11 +20,14 @@ export default function NewVerificationForm() {
     }
     newVerification(token)
       .then((data) => {
-        setSucces(data.succes)
         if (data.succes) {
+          setSucces(data.succes)
           router.push('/auth/login')
+          return
         }
-        setError(data.error)
+        if (data.error) {
+          setError(data.error)
+        }
       })
       .catch(() => setError('Something went wrong'))
   }, [token])
@@ -38,8 +41,7 @@ export default function NewVerificationForm() {
       backButtonLabel='Back to login'
     >
       <div className='flex items-center w-full justify-center'>
-        {!succes && !error && <BeatLoader />}
-
+        {!succes && !error && <BeatLoader color='white' />}
         <FormSucces message={succes} />
         <FormError message={error} />
       </div>

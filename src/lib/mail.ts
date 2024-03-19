@@ -8,6 +8,9 @@ const transporter = nodemailer.createTransport({
     pass: 'rvsm epcq nzcf obmm',
   },
   secure: false,
+  tls: {
+    rejectUnauthorized: false,
+  },
 })
 
 export const sendVerificationEmail = async (email: string, token: string) => {

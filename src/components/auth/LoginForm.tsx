@@ -20,6 +20,12 @@ import FormSucces from '../form-succes'
 import { login } from '@/actions/login'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from '@/components/ui/input-otp'
 
 const LoginForm = () => {
   const searchParams = useSearchParams()
@@ -37,19 +43,20 @@ const LoginForm = () => {
     startTransition(() => {
       login(values)
         .then((data) => {
-          if (data.error) {
-            form.reset()
-            setError(data.error)
-          }
           if (data.succes) {
             form.reset()
             setSucces(data.succes)
+            return
           }
+          if (data.error) {
+            setError(data.error)
+          }
+
           if (data.twoFactor) {
             setShowTwofactor(true)
           }
         })
-        .catch(() => setError('Something went wrong'))
+        .catch(() => setError(''))
     })
   }
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -68,7 +75,7 @@ const LoginForm = () => {
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-6'>
-          <div className='space-y-4'>
+          <div className='space-y-4 flex flex-col'>
             {showTwoFactor && (
               <FormField
                 control={form.control}
@@ -77,11 +84,19 @@ const LoginForm = () => {
                   <FormItem>
                     <FormLabel>Two factor code</FormLabel>
                     <FormControl>
-                      <Input
-                        disabled={isPending}
-                        {...field}
-                        placeholder='123456'
-                      />
+                      <InputOTP maxLength={6} disabled={isPending} {...field}>
+                        <InputOTPGroup>
+                          <InputOTPSlot index={0} />
+                          <InputOTPSlot index={1} />
+                          <InputOTPSlot index={2} />
+                        </InputOTPGroup>
+                        <InputOTPSeparator />
+                        <InputOTPGroup>
+                          <InputOTPSlot index={3} />
+                          <InputOTPSlot index={4} />
+                          <InputOTPSlot index={5} />
+                        </InputOTPGroup>
+                      </InputOTP>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

@@ -29,11 +29,17 @@ const RegisterForm = () => {
     setSucces('')
     startTransition(() => {
       register(values).then((data) => {
-        setError(data.error)
-        setSucces(data.succes)
+        if (data.succes) {
+          setSucces(data.succes)
+          return
+        }
+        if (data.error) {
+          setError(data.error)
+        }
       })
     })
   }
+
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
     defaultValues: {
