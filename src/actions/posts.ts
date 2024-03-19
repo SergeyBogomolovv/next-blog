@@ -4,7 +4,6 @@ import { db } from '@/lib/db'
 import { currentUser } from './current-user'
 import { findPostById } from '@/data/posts'
 import { UserRole } from '@prisma/client'
-import { postRevalidate } from './post-revalidation'
 import { EditPostSchema } from '@/schemas'
 import * as z from 'zod'
 import { del, put } from '@vercel/blob'
@@ -12,6 +11,7 @@ import { v4 as uuid } from 'uuid'
 import { NewPostSchema } from '@/schemas'
 import { auth } from '@/lib/auth'
 import { getUserById } from '@/data/user'
+import { revalidateTag } from 'next/cache'
 
 export const deletePost = async (id: string) => {
   const user = await currentUser()
@@ -20,7 +20,8 @@ export const deletePost = async (id: string) => {
     try {
       await db.post.delete({ where: { id } })
       if (post?.image) await del(post.image)
-      postRevalidate()
+      await db.comment.deleteMany({ where: { postId: post?.id } })
+      revalidateTag('posts')
       return { succes: 'Post deleted' }
     } catch (error) {
       return { error: 'Something went wrong' }
@@ -28,6 +29,7 @@ export const deletePost = async (id: string) => {
   }
   return { error: 'No acces' }
 }
+
 export const editPost = async (
   values: z.infer<typeof EditPostSchema>,
   postId: string,
@@ -53,7 +55,7 @@ export const editPost = async (
     where: { id: postId },
     data: { ...values, image: imageName },
   })
-  postRevalidate()
+  revalidateTag('posts')
   return { succes: 'Post updated' }
 }
 export const addpost = async (
@@ -82,7 +84,8 @@ export const addpost = async (
         image: blob.url,
       },
     })
-    postRevalidate()
+
+    revalidateTag('posts')
     return { succes: 'Post sent' }
   } catch (error) {
     console.log(error)

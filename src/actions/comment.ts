@@ -4,7 +4,7 @@ import { CommentSchema } from '@/schemas'
 import * as z from 'zod'
 import { currentUser } from './current-user'
 import { db } from '@/lib/db'
-import { revalidatePath } from 'next/cache'
+import { revalidateTag } from 'next/cache'
 import { getCommentById } from '@/data/comments'
 
 export const comment = async (
@@ -20,7 +20,7 @@ export const comment = async (
   await db.comment.create({
     data: { content: values.content, authorId: user.id, postId: post.id },
   })
-  revalidatePath('/posts')
+  revalidateTag('comments')
   return { succes: 'Comment sent!' }
 }
 
@@ -32,7 +32,7 @@ export const deleteComment = async (commentId: string) => {
     return { error: 'No acces' }
   }
   await db.comment.delete({ where: { id: commentId } })
-  revalidatePath('/posts')
+  revalidateTag('comments')
   return { succes: 'Comment deleted' }
 }
 
@@ -50,6 +50,6 @@ export const editComment = async (
     where: { id: comment.id },
     data: { ...values },
   })
-  revalidatePath('/posts')
+  revalidateTag('comments')
   return { succes: 'Comment updated' }
 }

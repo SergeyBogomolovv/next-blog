@@ -1,7 +1,7 @@
 import Suggestion from '@/components/blog/suggestion'
 import { getAllWaitingSuggestions } from '@/data/suggestions'
 import EmptyAdminCard from '../_components/empty-admin-card'
-
+export const tags = ['posts']
 const AdminPage = async () => {
   const suggestions = await getAllWaitingSuggestions()
 

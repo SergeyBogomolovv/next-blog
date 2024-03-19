@@ -19,7 +19,10 @@ export default async function CommentCard({ comment, author }: Props) {
     <div className='flex justify-between gap-4 items-center'>
       <div className='flex gap-4 w-full items-center'>
         <Avatar className='w-12 h-12'>
-          <AvatarImage src={author?.image || ''} />
+          <AvatarImage
+            src={author?.image || ''}
+            className='aspect-square object-cover'
+          />
           <AvatarFallback className='bg-black dark:bg-white p-2'>
             <FaUser className='text-white dark:text-black h-full w-full' />
           </AvatarFallback>

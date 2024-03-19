@@ -15,11 +15,11 @@ export default function Links() {
       <Link
         href={'/'}
         className={cn(
-          'text-2xl text-black dark:text-white font-semibold',
+          'text-2xl text-black dark:text-white font-semibold tracking-widest',
           font.className
         )}
       >
-        Eto Yoshimura
+        Necessitatibus
       </Link>
       <div className='md:flex hidden items-center gap-2 flex-row'>
         {links.map((link) => (

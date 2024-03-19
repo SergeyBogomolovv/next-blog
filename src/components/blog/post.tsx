@@ -19,7 +19,7 @@ interface Props {
 
 export default function PostCard({ post, comments, author }: Props) {
   return (
-    <Card>
+    <Card className='flex flex-col'>
       <CardHeader>
         <h2 className={cn('text-2xl tracking-wide', font.className)}>
           {post.title}
@@ -33,7 +33,7 @@ export default function PostCard({ post, comments, author }: Props) {
         className='w-full object-cover aspect-video'
       />
       <Separator className='mb-6' />
-      <CardContent className='flex flex-col gap-4'>
+      <CardContent className='flex flex-col gap-4 flex-grow'>
         <p className='text-sm flex-grow'>{post.content}</p>
         <UserCard label='Author' user={author} />
       </CardContent>

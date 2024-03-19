@@ -2,7 +2,7 @@ import Suggestion from '@/components/blog/suggestion'
 import { auth } from '@/lib/auth'
 import { getDeclinedSuggestionsByUserId } from '@/data/suggestions'
 import EmptySuggestionsCard from '../../_components/empty-suggestions-card'
-
+export const tags = ['posts']
 const Declined = async () => {
   const session = await auth()
   const suggestions = await getDeclinedSuggestionsByUserId(session?.user.id)

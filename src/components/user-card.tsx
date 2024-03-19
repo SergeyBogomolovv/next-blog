@@ -15,7 +15,10 @@ export default function UserCard({ user, label }: Props) {
       <HoverCardTrigger className='flex w-fit items-center cursor-pointer'>
         <Badge variant={'outline'}>
           <Avatar className='w-9 h-9 mr-3'>
-            <AvatarImage src={user?.image || ''} />
+            <AvatarImage
+              src={user?.image || ''}
+              className='aspect-square object-cover'
+            />
             <AvatarFallback className='bg-black dark:bg-white p-2'>
               <FaUser className='text-white dark:text-black h-full w-full' />
             </AvatarFallback>
@@ -32,7 +35,10 @@ export default function UserCard({ user, label }: Props) {
       <HoverCardContent className='w-full'>
         <div className='flex items-center gap-x-4'>
           <Avatar className='w-32 h-32'>
-            <AvatarImage src={user.image || ''} />
+            <AvatarImage
+              src={user.image || ''}
+              className='aspect-square object-cover'
+            />
             <AvatarFallback className='bg-black dark:bg-white p-8'>
               <FaUser className='text-white dark:text-black h-full w-full' />
             </AvatarFallback>

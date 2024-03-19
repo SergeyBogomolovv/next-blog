@@ -8,7 +8,7 @@ import { generateVerificationToken } from '@/lib/tokens'
 import { sendVerificationEmail } from '@/lib/mail'
 import { signOut } from '@/lib/auth'
 import { v4 as uuid } from 'uuid'
-import { del, put } from '@vercel/blob'
+import { put } from '@vercel/blob'
 
 export const settings = async (values: z.infer<typeof SettingsSchema>) => {
   const validatedFields = SettingsSchema.safeParse(values)

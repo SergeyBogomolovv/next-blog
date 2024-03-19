@@ -16,7 +16,7 @@ export default function Home() {
               font.className
             )}
           >
-            Eto Yoshimura
+            Dolor sit amet
           </h1>
 
           <div className='flex flex-col gap-6 text-center md:text-start'>
@@ -26,10 +26,10 @@ export default function Home() {
                 font.className
               )}
             >
-              Eto Yoshimura is the founding leader of Aogiri Tree, having formed
-              the organization in the decade between her original rampage and
-              the beginning of the series. While speculated by many to be the
-              One-Eyed King, she claims that this is not the case.
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam
+              at, reiciendis laboriosam numquam amet deserunt voluptate quidem
+              ipsum ullam possimus tenetur aperiam et nobis cum aliquam
+              temporibus natus necessitatibus. Magnam.
             </p>
             <div className='grid md:grid-cols-3 sm:grid-cols-2 gap-6'>
               <Image
@@ -61,10 +61,10 @@ export default function Home() {
                 font.className
               )}
             >
-              Instead, she is the One-Eyed Owl, the half-human and half-ghoul
-              daughter of Yoshimura and Ukina. Her human identity is Sen
-              Takatsuki, a best-selling horror novelist mentioned throughout the
-              series.
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere
+              maxime explicabo, tempore natus a nobis, totam quaerat corrupti,
+              quam provident blanditiis modi ipsa reprehenderit officiis! Minima
+              sed aperiam voluptates nam.
             </p>
           </div>
           <div className='grid grid-cols-2 gap-x-10'>

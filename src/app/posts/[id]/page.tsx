@@ -8,7 +8,7 @@ import { Orbitron } from 'next/font/google'
 import Image from 'next/image'
 import Comment from '@/components/blog/comment'
 const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
-
+export const tags = ['comments']
 const Post = async ({ params }: { params: { id: string } }) => {
   const post = await findPostById(params.id)
   const comments = await getCommentsByPostId(params.id)

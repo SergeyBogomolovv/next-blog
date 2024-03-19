@@ -52,7 +52,10 @@ export default function Navbar() {
       >
         <Link href={'/info'}>
           <Avatar className='w-6 h-6 mr-2'>
-            <AvatarImage src={user?.image || ''} />
+            <AvatarImage
+              src={user?.image || ''}
+              className='aspect-square object-cover'
+            />
             <AvatarFallback className='bg-black dark:bg-white'>
               <FaUser className='text-white dark:text-black' />
             </AvatarFallback>
