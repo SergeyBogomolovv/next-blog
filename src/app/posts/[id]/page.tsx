@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Orbitron } from 'next/font/google'
 import Image from 'next/image'
 import Comment from '@/components/blog/comment'
+import Loading from './loading'
 
 const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
 
