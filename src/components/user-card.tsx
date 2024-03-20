@@ -10,13 +10,16 @@ interface Props {
 }
 
 export default function UserCard({ user, label }: Props) {
+  const avatar = user?.image?.startsWith('avatars/')
+    ? `https://next-blog.storage.yandexcloud.net/${user?.image}`
+    : user?.image
   return (
     <HoverCard>
       <HoverCardTrigger className='flex w-fit items-center cursor-pointer'>
         <Badge variant={'outline'}>
           <Avatar className='w-9 h-9 mr-3'>
             <AvatarImage
-              src={user?.image || ''}
+              src={avatar || ''}
               className='aspect-square object-cover'
             />
             <AvatarFallback className='bg-black dark:bg-white p-2'>

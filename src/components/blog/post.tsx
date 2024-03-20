@@ -1,13 +1,13 @@
 import React from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import Image from 'next/image'
-import { Orbitron } from 'next/font/google'
+import { Orbitron, Poppins } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { Separator } from '../ui/separator'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 
-const font = Orbitron({ subsets: ['latin'], weight: '600' })
+const font = Poppins({ subsets: ['latin'], weight: '600' })
 import { FaReadme } from 'react-icons/fa6'
 import { Comment, Post, User } from '@prisma/client'
 import UserCard from '../user-card'
@@ -26,7 +26,7 @@ export default function PostCard({ post, comments, author }: Props) {
         </h2>
       </CardHeader>
       <Image
-        src={post.image}
+        src={`https://next-blog.storage.yandexcloud.net/${post.image}`}
         alt=''
         width={500}
         height={500}

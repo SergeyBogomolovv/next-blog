@@ -87,7 +87,9 @@ export default function EditPostModal({ children, post }: Props) {
           <DialogTitle>Edit post</DialogTitle>
         </DialogHeader>
         <Image
-          src={image || post.image}
+          src={
+            image || `https://next-blog.storage.yandexcloud.net/${post.image}`
+          }
           alt=''
           width={500}
           height={500}

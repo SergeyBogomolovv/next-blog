@@ -18,6 +18,9 @@ import { GoBrowser } from 'react-icons/go'
 
 export default function UserButton() {
   const user = useCurrentUser()
+  const avatar = user?.image?.startsWith('avatars/')
+    ? `https://next-blog.storage.yandexcloud.net/${user?.image}`
+    : user?.image
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className='w-full'>
@@ -25,7 +28,7 @@ export default function UserButton() {
           <div className='w-full'>
             <Avatar className='w-6 h-6 mr-2'>
               <AvatarImage
-                src={user?.image || ''}
+                src={avatar || ''}
                 className='aspect-square object-cover'
               />
               <AvatarFallback className='bg-black dark:bg-white'>

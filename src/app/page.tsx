@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { FaMicroblog } from 'react-icons/fa6'
+import { IoIosInformationCircleOutline } from 'react-icons/io'
 
 const font = Orbitron({ subsets: ['latin'], weight: ['600'] })
 
@@ -76,7 +77,10 @@ export default function Home() {
               </Link>
             </Button>
             <Button size={'lg'} variant={'outline'} asChild>
-              <Link href={'/about'}>Read More</Link>
+              <Link href={'/about'}>
+                <IoIosInformationCircleOutline className='w-6 h-6 mr-2' />
+                Read More
+              </Link>
             </Button>
           </div>
         </div>

@@ -7,8 +7,8 @@ import { db } from '@/lib/db'
 import { generateVerificationToken } from '@/lib/tokens'
 import { sendVerificationEmail } from '@/lib/mail'
 import { signOut } from '@/lib/auth'
-import { v4 as uuid } from 'uuid'
-import { put } from '@vercel/blob'
+import { s3 } from '@/lib/yandex-cloud'
+import { uploadAvatar } from '@/lib/upload-to-cloud'
 
 export const settings = async (values: z.infer<typeof SettingsSchema>) => {
   const validatedFields = SettingsSchema.safeParse(values)
@@ -55,13 +55,12 @@ export const changeLogo = async (data: FormData) => {
   const user = await currentUser()
   const dbUser = await getUserById(user?.id)
   if (!dbUser) return { error: 'No acces' }
-  const fileName = uuid() + '.jpg'
-  const blob = await put(fileName, image, {
-    access: 'public',
-  })
+  if (dbUser.image) await s3.Remove(dbUser.image)
+  const newAvatar = await uploadAvatar(image)
+  if (!newAvatar) return { error: 'Unnable to upload avatar' }
   await db.user.update({
     where: { id: dbUser.id },
-    data: { image: blob.url },
+    data: { image: newAvatar },
   })
-  return { succes: 'Logo updated', logo: blob.url }
+  return { succes: 'Logo updated', logo: newAvatar }
 }

@@ -39,13 +39,12 @@ const Post = async ({ params }: { params: { id: string } }) => {
           </div>
           <Separator className='mb-5 mt-3' />
           <Image
-            src={post?.image}
+            src={`https://next-blog.storage.yandexcloud.net/${post.image}`}
             alt=''
             width={1000}
             height={1000}
             className='lg:w-10/12 w-full aspect-video object-cover rounded-md'
           />
-
           <Separator className='mt-5' />
           <div className='text-muted-foreground my-5'>
             <p>{post.content}</p>

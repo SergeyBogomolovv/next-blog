@@ -44,12 +44,15 @@ export default function ChangeLogoButton() {
         .catch(() => setError('Something went wrong'))
     })
   }
+  const avatar = user?.image?.startsWith('avatars/')
+    ? `https://next-blog.storage.yandexcloud.net/${user?.image}`
+    : user?.image
 
   return (
     <div className='flex md:flex-row flex-col gap-4 justify-between items-center rounded-lg border p-3 shadow-md'>
       <div className='flex items-center gap-4'>
         <Image
-          src={image || user?.image || '/noavatar.png'}
+          src={image || avatar || '/noavatar.png'}
           alt=''
           width={500}
           height={500}

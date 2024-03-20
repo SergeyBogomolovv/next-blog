@@ -39,7 +39,7 @@ export default async function Suggestion({
           <UserCard label='Author' user={author} />
         )}
         <Image
-          src={post.image}
+          src={`https://next-blog.storage.yandexcloud.net/${post.image}`}
           alt=''
           width={500}
           height={500}
