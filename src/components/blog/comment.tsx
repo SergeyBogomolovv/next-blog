@@ -14,13 +14,15 @@ interface Props {
 export default async function CommentCard({ comment, author }: Props) {
   const user = await currentUser()
   const date = comment.createdAt.toLocaleDateString()
-
+  const avatar = author?.image?.startsWith('avatars/')
+    ? `https://next-blog.storage.yandexcloud.net/${author?.image}`
+    : user?.image
   return (
     <div className='flex justify-between gap-4 items-center'>
       <div className='flex gap-4 w-full items-center'>
         <Avatar className='w-12 h-12'>
           <AvatarImage
-            src={author?.image || ''}
+            src={avatar || ''}
             className='aspect-square object-cover'
           />
           <AvatarFallback className='bg-black dark:bg-white p-2'>
