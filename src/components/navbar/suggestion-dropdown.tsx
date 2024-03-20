@@ -3,7 +3,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
@@ -20,10 +19,8 @@ export default function SuggestionDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant={'outline'}>
-          {/* <Link href={'/my-suggestions'}> */}
           <FaCreativeCommonsSamplingPlus className='h-6 w-6 mr-2' />
           Suggestions
-          {/* </Link> */}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

@@ -37,6 +37,7 @@ export default function CommentAction({ comment }: Props) {
         .catch(() => toast.error('Something went wrong'))
     })
   }
+
   return (
     <Popover>
       <PopoverTrigger asChild>

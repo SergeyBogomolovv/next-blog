@@ -17,7 +17,7 @@ const Post = async ({ params }: { params: { id: string } }) => {
   const time = post?.createdAt.toLocaleTimeString()
 
   return (
-    <main className='container my-10 flex flex-col items-center xl:w-9/12 lg:w-10/12 md:w-11/12 w-full'>
+    <main className='container my-10 flex flex-col flex-grow items-center xl:w-9/12 lg:w-10/12 md:w-11/12 w-full'>
       {post ? (
         <>
           <div className='flex md:flex-row flex-col gap-3 md:justify-between w-full'>
@@ -46,11 +46,10 @@ const Post = async ({ params }: { params: { id: string } }) => {
             className='lg:w-10/12 w-full aspect-video object-cover rounded-md'
           />
 
-          <Separator className='my-5' />
-          <div className='text-muted-foreground'>
+          <Separator className='mt-5' />
+          <div className='text-muted-foreground my-5'>
             <p>{post.content}</p>
           </div>
-          <Separator className='my-5' />
           <CommentForm postId={post.id} />
           <div className='flex flex-col gap-10 mt-8 w-full justify-start'>
             {comments.map((comment) => (
