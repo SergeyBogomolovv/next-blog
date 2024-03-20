@@ -3,8 +3,10 @@ import { Orbitron } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { FaMicroblog } from 'react-icons/fa6'
 
 const font = Orbitron({ subsets: ['latin'], weight: ['600'] })
+
 export default function Home() {
   return (
     <main className='flex flex-grow flex-col justify-center items-center container my-10'>
@@ -18,7 +20,6 @@ export default function Home() {
           >
             Dolor sit amet
           </h1>
-
           <div className='flex flex-col gap-6 text-center md:text-start'>
             <p
               className={cn(
@@ -69,7 +70,10 @@ export default function Home() {
           </div>
           <div className='grid grid-cols-2 gap-x-10'>
             <Button size={'lg'} asChild>
-              <Link href={'/auth/login'}>Login</Link>
+              <Link href={'/posts'}>
+                <FaMicroblog className='w-6 h-6 mr-2' />
+                Blog
+              </Link>
             </Button>
             <Button size={'lg'} variant={'outline'} asChild>
               <Link href={'/about'}>Read More</Link>

@@ -19,7 +19,7 @@ export default function Links() {
           font.className
         )}
       >
-        Necessitatibus
+        Next Blog
       </Link>
       <div className='md:flex hidden items-center gap-2 flex-row'>
         {links.map((link) => (

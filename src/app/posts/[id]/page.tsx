@@ -4,12 +4,11 @@ import UserCard from '@/components/user-card'
 import { getCommentsByPostId } from '@/data/comments'
 import { findPostById } from '@/data/posts'
 import { cn } from '@/lib/utils'
-import { Orbitron } from 'next/font/google'
+import { Poppins } from 'next/font/google'
 import Image from 'next/image'
 import Comment from '@/components/blog/comment'
-import Loading from './loading'
 
-const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
+const poppins = Poppins({ subsets: ['latin'], weight: ['600'] })
 
 const Post = async ({ params }: { params: { id: string } }) => {
   const post = await findPostById(params.id)
@@ -24,8 +23,8 @@ const Post = async ({ params }: { params: { id: string } }) => {
           <div className='flex md:flex-row flex-col gap-3 md:justify-between w-full'>
             <h1
               className={cn(
-                'md:text-4xl text-2xl font-extrabold tracking-widest',
-                font.className
+                'md:text-4xl text-2xl font-extrabold tracking-wide',
+                poppins.className
               )}
             >
               {post.title}

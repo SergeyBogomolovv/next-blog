@@ -17,6 +17,7 @@ import { FaCreativeCommonsSamplingPlus, FaHome } from 'react-icons/fa'
 import { TbWorldQuestion } from 'react-icons/tb'
 import { SiApostrophe } from 'react-icons/si'
 import { useCurrentUser } from '@/hooks/use-current-user'
+import SuggestionDropdown from './suggestion-dropdown'
 
 export default function MobileNav() {
   const user = useCurrentUser()
@@ -41,12 +42,7 @@ export default function MobileNav() {
               Home
             </Link>
           </Button>
-          <Button variant={'outline'} asChild>
-            <Link href={'/my-suggestions'}>
-              <FaCreativeCommonsSamplingPlus className='h-6 w-6 mr-2' />
-              Suggestions
-            </Link>
-          </Button>
+          <SuggestionDropdown />
           <Button variant='outline' className='w-full' asChild>
             <Link href={'/posts'}>
               <SiApostrophe className='h-5 w-5 mr-2' />
