@@ -10,6 +10,7 @@ import MobileNav from './mobile'
 import Links from './links'
 import Headroom from 'react-headroom'
 import { useCurrentUser } from '@/hooks/use-current-user'
+import SuggestionDropdown from './suggestion-dropdown'
 
 export default function Navbar() {
   const user = useCurrentUser()
@@ -19,12 +20,7 @@ export default function Navbar() {
         <Links />
         <MobileNav />
         <div className='md:flex gap-8 items-center hidden'>
-          <Button variant={'outline'} asChild>
-            <Link href={'/my-suggestions'}>
-              <FaCreativeCommonsSamplingPlus className='h-6 w-6 mr-2' />
-              Suggestions
-            </Link>
-          </Button>
+          <SuggestionDropdown />
           {user ? (
             <UserButton />
           ) : (

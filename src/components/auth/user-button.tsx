@@ -36,7 +36,7 @@ export default function UserButton() {
           </div>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-40' align='end'>
+      <DropdownMenuContent align='end'>
         {user?.role === 'ADMIN' && (
           <Link href={'/admin'}>
             <DropdownMenuItem>

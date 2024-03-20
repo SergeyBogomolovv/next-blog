@@ -2,7 +2,6 @@
 
 import { useCurrentUser } from '@/hooks/use-current-user'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import { VscGitPullRequestNewChanges } from 'react-icons/vsc'
 import { IoSettingsOutline } from 'react-icons/io5'
 import { CgProfile } from 'react-icons/cg'
