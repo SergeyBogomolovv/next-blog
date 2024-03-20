@@ -47,11 +47,6 @@ export default function UserInfo({ user, label }: Props) {
             {user?.isTwoFactorEnabled ? 'ON' : 'OFF'}
           </p>
         </div>
-        <LogoutButton>
-          <Button variant={'destructive'} className='w-full'>
-            Logout
-          </Button>
-        </LogoutButton>
       </CardContent>
     </Card>
   )

@@ -1,68 +1,113 @@
 'use client'
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import { useCurrentUser } from '@/hooks/use-current-user'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { FaUser } from 'react-icons/fa'
+import { VscGitPullRequestNewChanges } from 'react-icons/vsc'
+import { IoSettingsOutline } from 'react-icons/io5'
+import { CgProfile } from 'react-icons/cg'
+import { IoIosLogOut } from 'react-icons/io'
+import { signOut } from 'next-auth/react'
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from '@/components/ui/menubar'
+import { CiClock2 } from 'react-icons/ci'
+import { MdPublic } from 'react-icons/md'
+import { BsBan } from 'react-icons/bs'
 
 export default function Navbar() {
-  const pathname = usePathname()
   const user = useCurrentUser()
   return (
-    <nav className='bg-secondary flex md:flex-row flex-col gap-2 justify-between items-center p-4 rounded-xl shadow-sm'>
-      <div className='flex gap-2 md:flex-row flex-col w-full'>
-        <Button
-          asChild
-          variant={
-            pathname.startsWith('/my-suggestions') ? 'default' : 'outline'
-          }
-        >
-          <Link href={'/my-suggestions'}>My Suggestions</Link>
-        </Button>
-        <Button
-          asChild
-          variant={
-            pathname.startsWith('/new-suggestion') ? 'default' : 'outline'
-          }
-        >
-          <Link href={'/new-suggestion'}>Suggest a Post</Link>
-        </Button>
+    <>
+      <Menubar>
+        <MenubarMenu>
+          <MenubarTrigger>Suggestions</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem asChild>
+              <Link href={'/new-suggestion'}>
+                <VscGitPullRequestNewChanges className='w-4 h-4 mr-2' />
+                Suggest a Post
+              </Link>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem asChild>
+              <Link href={'/my-suggestions'}>
+                <CiClock2 className='w-4 h-4 mr-2' />
+                Waiting
+              </Link>
+            </MenubarItem>
+            <MenubarItem asChild>
+              <Link href={'/my-suggestions/published'}>
+                <MdPublic className='w-4 h-4 mr-2' />
+                Published
+              </Link>
+            </MenubarItem>
+            <MenubarItem asChild>
+              <Link href={'/my-suggestions/declined'}>
+                <BsBan className='w-4 h-4 mr-2' />
+                Declined
+              </Link>
+            </MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
         {user?.role === 'ADMIN' && (
-          <Button
-            asChild
-            variant={pathname.startsWith('/admin') ? 'default' : 'outline'}
-          >
-            <Link href={'/admin'}>Dashboard</Link>
-          </Button>
+          <MenubarMenu>
+            <MenubarTrigger>Dashboard</MenubarTrigger>
+            <MenubarContent>
+              <MenubarItem asChild>
+                <Link href={'/admin/accepted'}>
+                  <MdPublic className='w-4 h-4 mr-2' />
+                  Blog
+                </Link>
+              </MenubarItem>
+              <MenubarSeparator />
+              <MenubarItem asChild>
+                <Link href={'/admin'}>
+                  <CiClock2 className='w-4 h-4 mr-2' />
+                  Latest
+                </Link>
+              </MenubarItem>
+              <MenubarItem asChild>
+                <Link href={'/admin/declined'}>
+                  <BsBan className='w-4 h-4 mr-2' />
+                  Declined
+                </Link>
+              </MenubarItem>
+            </MenubarContent>
+          </MenubarMenu>
         )}
-
-        <Button
-          asChild
-          variant={pathname === '/settings' ? 'default' : 'outline'}
-        >
-          <Link href={'/settings'}>Settings</Link>
-        </Button>
-      </div>
-      <Button
-        asChild
-        variant={pathname === '/info' ? 'default' : 'outline'}
-        className='w-full md:w-auto'
-      >
-        <Link href={'/info'}>
-          <Avatar className='w-6 h-6 mr-2'>
-            <AvatarImage
-              src={user?.image || ''}
-              className='aspect-square object-cover'
-            />
-            <AvatarFallback className='bg-black dark:bg-white'>
-              <FaUser className='text-white dark:text-black' />
-            </AvatarFallback>
-          </Avatar>
-          Profile
-        </Link>
-      </Button>
-    </nav>
+        <MenubarMenu>
+          <MenubarTrigger>Settings</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem asChild>
+              <Link href={'/settings'}>
+                <IoSettingsOutline className='w-4 h-4 mr-2' />
+                Profile Settings
+              </Link>
+            </MenubarItem>
+            <MenubarItem asChild>
+              <Link href={'/info'}>
+                <CgProfile className='w-4 h-4 mr-2' />
+                My Profile
+              </Link>
+            </MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem
+              onClick={() => {
+                signOut()
+              }}
+            >
+              <IoIosLogOut className='w-4 h-4 mr-2' />
+              Logout
+            </MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    </>
   )
 }

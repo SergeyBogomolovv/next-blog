@@ -24,7 +24,7 @@ export default function Footer() {
             </Link>
           </Button>
         </div>
-        <p>2024 - Gerax</p>
+        <p>© 2024 Gerax</p>
       </footer>
     </>
   )
