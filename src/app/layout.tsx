@@ -6,6 +6,7 @@ import { auth } from '@/lib/auth'
 import { Toaster } from '@/components/ui/sonner'
 import Navbar from '@/components/navbar/navbar'
 import Providers from '@/components/providers'
+import Footer from '@/components/footer'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
@@ -29,6 +30,7 @@ export default async function RootLayout({
               <Navbar />
               {children}
               <Toaster />
+              <Footer />
             </main>
           </Providers>
         </body>

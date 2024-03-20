@@ -1,7 +1,7 @@
 import { currentUser } from '@/actions/current-user'
 import UserInfo from '@/components/auth/user-info'
 
-const ClientPage = async () => {
+const InfoPage = async () => {
   const user = await currentUser()
   return (
     <div className='w-full'>
@@ -10,4 +10,4 @@ const ClientPage = async () => {
   )
 }
 
-export default ClientPage
+export default InfoPage

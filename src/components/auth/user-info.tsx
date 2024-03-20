@@ -7,6 +7,7 @@ interface Props {
   user?: ExtendedUser
   label: string
 }
+
 export default function UserInfo({ user, label }: Props) {
   return (
     <Card className='shadow-md'>

@@ -23,7 +23,7 @@ const SuggestionStatusComponent = ({ status }: Props) => {
       )}
       {status === PostStatus.waiting && (
         <div className='bg-yellow-600/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-yellow-600 w-full'>
-          <CiClock2 className='w-4 h-4' />
+          <CiClock2 className='w-10 h-10 md:w-4 md:h-4' />
           <p>Our admins will check your suggestion as soon as possible</p>
         </div>
       )}
