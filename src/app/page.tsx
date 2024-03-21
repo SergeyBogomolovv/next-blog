@@ -36,21 +36,21 @@ export default function Home() {
             <div className='grid md:grid-cols-3 sm:grid-cols-2 gap-6'>
               <Image
                 className='rounded-lg w-9/12 sm:w-full mx-auto'
-                src={'/4.jpeg'}
+                src={'/1.jpg'}
                 width={500}
                 height={500}
                 alt=''
               />
               <Image
                 className='rounded-lg w-9/12 sm:w-full mx-auto hidden md:block'
-                src={'/3.jpeg'}
+                src={'/2.jpg'}
                 width={500}
                 height={500}
                 alt=''
               />
               <Image
                 className='rounded-lg w-9/12 sm:w-full mx-auto'
-                src={'/5.jpeg'}
+                src={'/3.jpg'}
                 width={500}
                 height={500}
                 alt=''
@@ -85,7 +85,7 @@ export default function Home() {
           </div>
         </div>
         <Image
-          src={'/youshimura.jpg'}
+          src={'/4.jpg'}
           alt=''
           width={1000}
           height={1000}
