@@ -79,7 +79,6 @@ const NewSuggestionForm = () => {
           </p>
         </div>
       </CardHeader>
-
       <CardContent>
         {image && (
           <Image
@@ -92,7 +91,6 @@ const NewSuggestionForm = () => {
         )}
         <input
           accept='.jpg, .jpeg, .png, .webp, .img'
-          disabled={isPending}
           onChange={(e) => {
             if (e.target.files?.length) {
               const image = URL.createObjectURL(e.target.files[0])
@@ -115,6 +113,7 @@ const NewSuggestionForm = () => {
                 type='button'
                 onClick={() => inputRef.current?.click()}
                 className='w-full'
+                disabled={isPending}
               >
                 <CiImageOn className='w-5 h-5 mr-2' />
                 {image ? 'Change image' : 'Upload image'}

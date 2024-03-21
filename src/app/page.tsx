@@ -56,7 +56,6 @@ export default function Home() {
                 alt=''
               />
             </div>
-
             <p
               className={cn(
                 'xl:text-lg lg:text-base text-sm dark:text-white tracking-widest',
