@@ -39,7 +39,7 @@ export default function UserCard({ user, label }: Props) {
         <div className='flex items-center gap-x-4'>
           <Avatar className='w-32 h-32'>
             <AvatarImage
-              src={user.image || ''}
+              src={avatar || ''}
               className='aspect-square object-cover'
             />
             <AvatarFallback className='bg-black dark:bg-white p-8'>

@@ -12,7 +12,7 @@ const font = Orbitron({ subsets: ['latin'], weight: 'variable' })
 const PostsPage = async () => {
   const posts = await getAllPosts()
   return (
-    <main className='flex flex-col items-center my-12 container'>
+    <main className='flex flex-col items-center my-12 container flex-grow'>
       <div className='flex items-center justify-between w-full'>
         <h1
           className={cn(
