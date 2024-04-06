@@ -21,6 +21,7 @@ export default function UserButton() {
   const avatar = user?.image?.startsWith('avatars/')
     ? `https://next-blog.storage.yandexcloud.net/${user?.image}`
     : user?.image
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className='w-full'>
