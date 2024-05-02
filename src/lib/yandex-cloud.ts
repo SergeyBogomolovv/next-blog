@@ -5,8 +5,8 @@ const secretAccessKey = process.env.YANDEX_CLOUD_KEY_SECRET!
 
 export const s3 = new EasyYandexS3({
   auth: {
-    accessKeyId,
-    secretAccessKey,
+    accessKeyId: process.env.YANDEX_CLOUD_KEY_ID!,
+    secretAccessKey: process.env.YANDEX_CLOUD_KEY_SECRET!,
   },
   Bucket: 'next-blog',
   debug: true,
